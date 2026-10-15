@@ -1,0 +1,161 @@
+<InfoArch> <!-- Client Initial Information Architecture -->
+    <SkipTermStore>No</SkipTermStore>
+    <TermGroups>
+        <TermGroup>Client Taxonomy</TermGroup>
+    </TermGroups>
+    <TermSets>
+        <TermSet>
+            <Group>Client Taxonomy</Group>
+            <Name>DMS US Categories</Name>
+        </TermSet>
+        <TermSet>
+            <Group>Client Taxonomy</Group>
+            <Name>DMS</Name>
+        </TermSet>
+        <TermSet>
+            <Group>Client Taxonomy</Group>
+            <Name>Organizations</Name>
+        </TermSet>
+    </TermSets>
+    <Terms> <!-- Currently only capable of creating top level terms -->
+        <Term>
+            <Group>Client Taxonomy</Group>
+            <Set>DMS US Categories</Set>
+            <Name>Active Lease Documentation</Name>
+        </Term>
+        <Term>
+            <Group>Client Taxonomy</Group>
+            <Set>DMS US Categories</Set>
+            <Name>Building Information</Name>
+        </Term>
+        <Term>
+            <Group>Client Taxonomy</Group>
+            <Set>DMS US Categories</Set>
+            <Name>Customer Accounting</Name>
+        </Term>
+        <Term>
+            <Group>Client Taxonomy</Group>
+            <Set>DMS</Set>
+            <Name>Property Management</Name>
+        </Term>
+        <Term>
+            <Group>Client Taxonomy</Group>
+            <Set>DMS</Set>
+            <Name>Property Management Americas</Name>
+        </Term>
+        <Term>
+            <Group>Client Taxonomy</Group>
+            <Set>Organizations</Set>
+            <Name>Clients</Name>
+        </Term>
+        <Term>
+            <Group>Client Taxonomy</Group>
+            <Set>Organizations</Set>
+            <Name>Our Organization</Name>
+        </Term>
+        <Term>
+            <Group>Client Taxonomy</Group>
+            <Set>Organizations</Set>
+            <Name>Suppliers</Name>
+        </Term>
+    </Terms>
+    <Fields>
+        <Field Type="Text" Group="PowerShell Columns" ID="{e8352c06-82f4-4ef0-99d7-18a1827d0415}" StaticName="BasicTextField" Name="BasicTextField" DisplayName="Basic Text Field" Description="Basic Text Field - Required" LCID="1033" ReadOnly="FALSE" Required="TRUE">
+        </Field>
+        <Field Type="Note" Group="PowerShell Columns" ID="{7f0ef586-1f04-4171-b468-eb4f26779f8a}" StaticName="MulitlineTextField" Name="MulitlineTextField" DisplayName="Mulitline Text Field" Description="Mulitline Text Field" LCID="1033" ReadOnly="FALSE" Required="TRUE" NumLines="6" RichText="FALSE">
+        </Field>
+        <Field Type="User" Group="PowerShell Columns" ID="{f70fab28-534a-45bd-b4a4-57410b32de13}" StaticName="UserField" Name="UserField" DisplayName="User Field" Description="People Only User Field" LCID="1033" ReadOnly="FALSE" Required="FALSE" List="UserInfo" EnforceUniqueValues="FALSE" ShowField="ImnName" UserSelectionMode="PeopleOnly" UserSelectionScope="0" > 
+        </Field>
+        <Field Type="Number" Group="PowerShell Columns" ID="{3d3fe7f5-2867-48e4-a0b0-c3d3586b8876}" StaticName="BasicNumberField" Name="BasicNumberField" DisplayName="Basic Number Field" Description="Basic Number Field - with commas and decimals" LCID="1033" ReadOnly="FALSE" Required="TRUE" Commas="TRUE" Decimals="1">
+        </Field>
+        <Field Type="Currency" Group="PowerShell Columns" ID="{204a9e71-f454-4e9b-8a66-e5fddff63e82}" StaticName="BasicCurrencyField" Name="BasicCurrencyField" DisplayName="Basic Currency Field" Description="Basic Currency Field - with commas and decimals, min 0 max 1000" LCID="1033" ReadOnly="FALSE" Required="TRUE" Commas="TRUE" Decimals="2" MIn="0" Max="1000">
+        </Field>
+        <Field Type="Choice" Group="PowerShell Columns" ID="{e594c9e9-7b24-4c04-99c5-a26c04889249}" StaticName="ChoiceField" Name="ChoiceField" DisplayName="Choice Field" Description="Choice Field - Required" LCID="1033" ReadOnly="FALSE" Required="TRUE">
+            <CHOICES>
+            <CHOICE>Administration</CHOICE>
+            <CHOICE>Information</CHOICE>
+            <CHOICE>Facilities</CHOICE>
+            <CHOICE>Operations</CHOICE>
+            <CHOICE>Sales</CHOICE>
+            <CHOICE>Marketing</CHOICE>
+            </CHOICES>
+        </Field>
+        <Field Type="DateTime" Group="PowerShell Columns" ID="{891556f8-78d2-4969-9551-85c97c3a48b1}" StaticName="DateField" Name="DateField" DisplayName="Date Field" Description="Date Field - defaults to today, date only not required" LCID="1033" ReadOnly="FALSE" Required="FALSE" Format="DateOnly">
+        <Default>[today]</Default>
+        </Field>
+        <Field Type="Calculated" Group="PowerShell Columns" ID="{eb04b528-4db4-4e84-b198-74aa8a008399}" StaticName="MyCalculatedField" Name="MyCalculatedField" DisplayName="MyCalculatedField" LCID="1033" ResultType="Number" ReadOnly="TRUE">
+            <Formula>=BasicNumberField*7.5</Formula>
+            <FieldRefs>
+                <FieldRef Name="BasicNumberField" />
+            </FieldRefs>
+        </Field>
+        <Field Type="Taxonomy" Group="PowerShell Columns" ID="{c69071ba-217e-4831-95a8-03d938a96287}" StaticName="TaxonomyField" Name="TaxonomyField" DisplayName="Taxonomy Field" Description="Taxonomy Field" LCID="1033" ReadOnly="FALSE" Required="TRUE" TermSetPath="Client Taxonomy&#124;DMS US Categories">
+        </Field>
+        <Field Type="Boolean" Group="PowerShell Columns" ID="{43cf1d32-f3b2-4ea1-a79c-6ab9f58028cd}" StaticName="BooleanField" Name="BooleanField" DisplayName="Boolean Field" Description="Boolean Field" LCID="1033" ReadOnly="FALSE" Required="FALSE" >
+            <Default>0</Default>
+        </Field>
+        <Field Type="URL" Group="Custom Columns" ID="{3aff7a7d-3fd1-4ebe-8966-d4c735f306e3}" StaticName="RAIDDeliverableLink" Name="RAIDDeliverableLink" DisplayName="Deliverable Link" Required="FALSE" Format="Hyperlink">
+        </Field>
+    </Fields>
+    <ContentTypes>
+        <ContentType><Name>Base Document</Name>
+            <Group>_Client Content Types</Group>
+            <Parent>Document</Parent>
+            <Fields>
+                <Field>BasicTextField</Field>
+            </Fields>
+        </ContentType>
+        <ContentType><Name>DMS Document</Name>
+            <Group>_Client Content Types</Group>
+            <Parent>Base Document</Parent>
+            <Fields>
+                <Field>BasicTextField</Field>
+                <Field>DateField</Field>
+                <Field>BasicNumberField</Field>
+                <Field>BasicCurrencyField</Field>
+                <Field>ChoiceField</Field>
+                <Field>MyCalculatedField</Field>
+                <Field>TaxonomyField</Field>
+            </Fields>
+        </ContentType>
+        <ContentType><Name>Property Document</Name>
+            <Group>_Client Content Types</Group>
+            <Parent>DMS Document</Parent>
+            <Fields>
+                <Field>BasicTextField</Field>
+                <Field>DateField</Field>
+                <Field>BasicNumberField</Field>
+                <Field>BasicCurrencyField</Field>
+                <Field>ChoiceField</Field>
+                <Field>MyCalculatedField</Field>
+                <Field>TaxonomyField</Field>
+            </Fields>
+        </ContentType>
+        <ContentType><Name>Property Document Container</Name>
+            <Group>_Client Content Types</Group>
+            <Parent>Document Set</Parent>
+            <Fields>
+                <Field>BasicTextField</Field>
+                <Field>DateField</Field>
+                <Field>BasicNumberField</Field>
+                <Field>BasicCurrencyField</Field>
+                <Field>ChoiceField</Field>
+                <Field>MyCalculatedField</Field>
+                <Field>TaxonomyField</Field>
+            </Fields>
+        </ContentType>
+        <ContentType><Name>DMS Property Document Link</Name>
+            <Group>_Client Content Types</Group>
+            <Parent>Link to a Document</Parent>
+            <Fields>
+                <Field>BasicTextField</Field>
+                <Field>DateField</Field>
+                <Field>BasicNumberField</Field>
+                <Field>BasicCurrencyField</Field>
+                <Field>ChoiceField</Field>
+                <Field>MyCalculatedField</Field>
+                <Field>TaxonomyField</Field>
+            </Fields>
+        </ContentType>
+    </ContentTypes>
+</InfoArch>

@@ -1,0 +1,12 @@
+{
+  "boxAppSettings": {
+    "clientID": "r58g3cvo0i53gh96xse29bc7f2dj1yam",
+    "clientSecret": "SechHgpBDTQjtBh2LGKp7M2v5DCfZV2n",
+    "appAuth": {
+      "publicKeyID": "utguv4fq",
+      "privateKey": "-----BEGIN ENCRYPTED PRIVATE KEY-----\nMIIFDjBABgkqhkiG9w0BBQ0wMzAbBgkqhkiG9w0BBQwwDgQIHyz/Na8B0+UCAggA\nMBQGCCqGSIb3DQMHBAgqAToudtJH9ASCBMiFQLZI3ZPk//6J1ryMq1O3FS7RuTno\nGapL07Vhu5c0eR6J32zK5ksaWUR3y+qDJHuclEAyobC8BodhK64iSb81TZIEw73J\n4MUutsgFdi+NlqjrqOMP+yHuETt1TpOq/VzvezuQxK24wTXnlYFtBStqutpswiB2\nCuSq/HN3Hmy59Ngatrm9bK5/RtDkCESoZJlorD3Sc+r+b208I2hBnHjna2foIuaO\noVSjZlEVL7A0eo7G5wBokTYrFTrgwhWzxIAM3B9zk9WrQANGFq6Cdg8bjHafLuKF\neLMrJUOz4k7+5IThUIH/HOAlXx4pwtl3OO/BsbNlZZpD4vxoKsBe7gwofGgptejV\nifwtRn9isxSBMfXk+O7+plXyeU6tlr5OtznWWXdjsUtuhZNfP1cGUx+mUVAtsevr\nT67ZAqvbRzhCUVIvN5U83YLPUzwlBGce6eOxyah6E4yzlkvDF17locFfA2oqFs8+\ncccHGv50qTM/Y4HXS/8oqdsTdK7R97Ah7YzGtgK4P65+swN7zY1aPlAgrASGry+C\nTjjXsedu6thiQFRlYusvY8GZv9u7PC+equLLPrDf0pnMtyPWrmjWGjeyxwp15fgu\n2L3thgAbUiQ+AtuVMN3e7r4bG0mk6Ro7z4SbBJ/3yRSW/xCACW0wxSnxPvksNV3L\nCCFqplM6PA/sNK63zZoThUeKSmcGAYH/ymH4qZxjF2y8RpnVVrXpq4Kaqj2K7Aaz\nF0MSyunela12qzcboUKiwhI3C202eQRu19dj9d8qWO0UvYy3K5dYMelxqBDVFiGz\n7xhjO4hG3KeB5pmYNvQHoBQQc72zQYDdrZimhGsfM3AReQvaci7SYh2t4hkkMUS+\nTbvG/4Qp6tUaZi9AIV1oZ4kTajFgaqW9M1FM5gMDljtcuBFeDxU7xWS8bouJCP/M\nmHUaNvRUrW9B3MTgc/Es3TmLdWN/04RkB9oOoZ3ra7UV6vqzBtglmK+H6Pk4d0L+\nqkUdDL0vCJa5L+lpfQ8sDzOA+t4H887WvHbxJ2QA/pAZaeg0d32qte7txCF4ukV9\nF0vsP+FQzA5i5Z1WUfq52YRP2YjA0oInW0uruDuUEXSCl2yKBBMwp+TWe9Q3p1Wn\neeaGJULLUOupCKpxia2UuxJSAXJHPI0QTgNqBCVOJn2YNIstpfJFDy9k1UHXbOns\nkmtT/jsT3bNBoswlcpUjgQLtI9e2SyLN8Ln+uYq1PdCDF6404q/Prs/fE2Wayz9A\nMckHSRRFoIabfPcguYbBpkdWebwuQEqXR2Zww8omYuMO8so0bdJSuQIOKtbg0mDB\nJmRZgi3Rs6RNYLf/UlEsf+aWJc54zECQWb45b5mWSHRtdoEBV5+K4Litm/bG/LoD\nkWRyBVzU+XzOAkHhKRuHIRTOxAMa/bnccjtmEdbxjmedFMTvU3t0PbvLWDSBlHzy\nZ49WKRU0kz9FJAWEvF56hrQMGPAfHH2RZRqPNey2n9MkPElrewrJy6lS6+CRmma0\nar7GDicaiXB5F0MjLCYcxeYeGkqOnVogmP+qNKkO11sBmrhJq3BWz9ukql0nfdEj\nMwfEZnewvZZFd5Wr6CY9mE3XMKdUnj8dkkh/OVdlwkjDsBtSFzkt6qwdFnOdAT0F\n5Vc=\n-----END ENCRYPTED PRIVATE KEY-----\n",
+      "passphrase": "77bd1b130380b74511129445f7265e93"
+    }
+  },
+  "enterpriseID": "237787"
+}

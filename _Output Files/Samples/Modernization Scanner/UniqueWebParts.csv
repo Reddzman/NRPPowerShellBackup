@@ -1,0 +1,8 @@
+Type,InMappingFile
+"Microsoft.SharePoint.WebPartPages.GettingStartedWithAppCatalogSiteWebPart, Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c",True
+"Microsoft.SharePoint.WebPartPages.XsltListViewWebPart, Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c",True
+"SharePointPnP.Modernization.WikiTextPart",True
+"Microsoft.SharePoint.Portal.WebControls.SiteFeedWebPart, Microsoft.SharePoint.Portal, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c",True
+"Microsoft.SharePoint.WebPartPages.ListViewWebPart, Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c",True
+"Microsoft.SharePoint.WebPartPages.GettingStartedWebPart, Microsoft.SharePoint, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c",True
+"Microsoft.SharePoint.Publishing.WebControls.TableOfContentsWebPart, Microsoft.SharePoint.Publishing, Version=16.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c",True

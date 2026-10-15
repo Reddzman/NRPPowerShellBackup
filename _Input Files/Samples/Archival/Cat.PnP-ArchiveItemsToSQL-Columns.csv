@@ -1,0 +1,209 @@
+﻿columnTitle,columnInternalName,columnType
+ID,ID,Counter
+Modified,Modified,DateTime
+Created,Created,DateTime
+Created By,Author,User
+Modified By,Editor,User
+Title,Title,Text
+PAR Request ID,PARPARRequestID,Text
+Funding Code,PARFundingCode,Text
+PAR Status,PARPARStatus,Text
+Sensitive,PARSensitive,Text
+Copied To,PARCopiedTo,Text
+Copied From,PARCopiedFrom,Text
+Personnel Action Type (PAR Type),PARPersonnelActionType_x0028_PAR,Text
+Employment Type,PAREmploymentType,Text
+Reclassification Type,PARReclassificationType,Text
+Leave Type,PARLeaveType,Text
+Special Action Type,PARSpecialActionType,Text
+Other Details,PAROtherDetails,Text
+Step,PARStep,Text
+Status/Rank Details,PARStatus_x002f_RankDetails,Text
+Punitive Action Type,PARPunitiveActionType,Text
+Return Type,PARReturnType,Text
+Separation Type,PARSeparationType,Text
+Position Action Type (PAR Type),PARPositionActionType_x0028_PART,Text
+High Priority,PARHighPriority,Text
+Effective Date,PAREffectiveDate,DateTime
+First Name,PARFirstName,Text
+Last Name,PARLastName,Text
+Suffix,PARSuffix,Text
+MI (Middle Initial),PARMI_x0028_MiddleInitial_x0029_,Text
+Badge # / Name,PARBadge_x0023__x002f_Name,Text
+Through Date,PARThroughDate,DateTime
+Annual Salary,PARAnnualSalary,Currency
+Hourly Salary,PARHourlySalary,Currency
+Salary Type,PARSalaryType,Text
+Salary Increase Recommended,PARSalaryIncreaseRecommended,Text
+Reports To,PARReportsTo,Text
+Supervisor Change,PARSupervisorChange,Text
+Acting,PARActing,Text
+Acting Supervisor,PARActingSupervisor,Text
+Non-DPS Supervisor,PARNon_x002d_DPSSupervisor,Text
+Reports To Non-DPS,PARReportsToNon_x002d_DPS,Text
+HRIS Supervisor Code,PARHRISSupervisorCode,Text
+Current Location Code,PARCurrentLocationCode,Text
+Current County,PARCurrentCounty,Text
+Current Classification,PARCurrentClassification,Text
+Current Class Code,PARCurrentClassCode,Text
+Current Position Number,PARCurrentPositionNumber,Text
+Current HRIS Code,PARCurrentHRISCode,Text
+Current Call Sign Designator,PARCurrentCallSignDesignator,Text
+New Location Code,PARNewLocationCode,Text
+New County,PARNewCounty,Text
+New Classification,PARNewClassification,Text
+New Class Code,PARNewClassCode,Text
+New Position Number,PARNewPositionNumber,Text
+New HRIS Code,PARNewHRISCode,Text
+New Call Sign Designator,PARNewCallSignDesignator,Text
+Overfill / Underfill,PAROverfill_x002f_Underfill,Text
+Moving Expenses,PARMovingExpenses,Text
+Per Diem Expenses,PARPerDiemExpenses,Text
+State Housing Moving In Unit Number,PARStateHousingMovingInUnitNumbe,Text
+State Housing Moving Out Unit Number,PARStateHousingMovingOutUnitNumb,Text
+Adjust Uniform Allowance To,PARAdjustUniformAllowanceTo,Currency
+Shift,PARShift,Text
+Shift Differential,PARShiftDifferential,Text
+Remote Duty,PARRemoteDuty,Text
+Other Pay Options,PAROtherPayOptions,Text
+Recruitment Incentive,PARRecruitmentIncentive,Text
+PAR Description,PARPARDescription,Note
+Hiring/Receiving Manager,PARHiring_x002f_ReceivingManager,Text
+Hiring/Receiving Assistant Director,PARReceivingAssistantDirector,Text
+Departing Assistant Director,PARDepartingAssistantDirector,Text
+Request Additional Information From,PARRequestAdditionalInformationF,Text
+Initiator,PARInitiator,Text
+Initiation Date,PARInitiationDate,DateTime
+Hiring/Receiving Manger Received Date,PARHiring_x002f_ReceivingMangerR,DateTime
+Hiring/Receiving Manager Signature,PARHiring_x002f_ReceivingManager0,Text
+Hiring/Receiving Manager Approval Date,PARHiring_x002f_ReceivingApprova,DateTime
+Hiring/Receiving Assistant Director Received Date,PARReceivingAssistantDirectorRec,DateTime
+Hiring/Receiving Assistant Director Signature,PARReceivingAssistantDirectorSig,Text
+Hiring/Receiving Assistant Director Approval Date,PARReceivingAssistantDirectorApp,DateTime
+Departing Assistant Director Received Date,PARDepartingAssistantDirectorRec,DateTime
+Departing Assistant Director Signature,PARDepartingAssistantDirectorSig,Text
+Departing Assistant Director Approval Date,PARDepartingAssistantDirectorApp,DateTime
+Funding Assistant Director Received Date,PARFundingAssistantDirectorRecei,DateTime
+Funding Assistant Director,PARFundingAssistantDirector,Text
+Funding Assistant Director Approval Date,PARFundingAssistantDirectorAppro,DateTime
+Position Control Received Date,PARPositionControlReceivedDate,DateTime
+Position Control Signature,PARPositionControl,Text
+Position Control Review Date,PARPositionControlReviewDate,DateTime
+Budget Officer Received Date,PARBudgetOfficerReceivedDate,DateTime
+Budget Officer Signature,PARBudgetOfficer,Text
+Budget Officer Approval Date,PARBudgetOfficerApprovalDate,DateTime
+LEMSC Received Date,PARLEMSCReceivedDate,DateTime
+LEMSC Signature,PARLEMSC,Text
+LEMSC Approval Date,PARLEMSCApprovalDate,DateTime
+Human Resources Analyst Received Date,PARHumanResourcesReceivedDate,DateTime
+Human Resources Analyst Signature,PARHumanResources,Text
+Human Resources Analyst Approval Date,PARHumanResourcesApprovalDate,DateTime
+Director Received Date,PARDirectorReceivedDate,DateTime
+Director Sign,PARDirector,Text
+Director Approval Date,PARDirectorApprovalDate,DateTime
+Position Control Data Entry Received Date,PARPositionControlDataEntryRecei,DateTime
+Position Control Data Entry Signature,PARPositionControlDataEntry,Text
+Position Control Data Entry Complete Date,PARPositionControlDataEntryCompl,DateTime
+Payroll Data Entry Received Date,PARPayrollReceivedDate,DateTime
+Payroll Data Entry Signature,PARPayroll,Text
+Payroll Data Entry Complete Date,PARPayrollApprovalDate,DateTime
+Previous State Employment,PARPreviousStateEmployment,Text
+Former Agency,PARFormerAgency,Text
+Previous Hire Date,PARPreviousHireDate,DateTime
+Previous Separation Date,PARPreviousSeparationDate,DateTime
+HRIS Applicant Number,PARHRISApplicantNumber,Text
+LEMSC Status,PARLEMSCStatus,Text
+Social Security Number,PARSocialSecurityNumber,Text
+Selection,PARSelection,Text
+Mailing Address,PARMailingAddress,Text
+Mailing City,PARMailingCity,Text
+Mailing County,PARMailingCounty,Text
+Mailing State,PARMailingState,Text
+Mailing Zip,PARMailingZip,Text
+Gender,PARGender,Text
+Marital Status,PARMaritalStatus,Text
+Ethnicity,PAREthnicity,Text
+Veteran Status,PARVeteranStatus,Text
+AZ State Retiree,PARAZStateRetiree,Text
+Retirement,PARRetirement,Text
+Retirement Code,PARRetirementCode,Text
+Benefit Date,PARBenefitDate,DateTime
+Overtime Status,PAROvertimeStatus,Text
+ASRS Member,PARASRSMember,Text
+PSPRS Member,PARPSPRSMember,Text
+Affordable Care Act (ACA) Designation,PARAffordableCareAct_x0028_ACA_x,Text
+Date of Birth,PARDateofBirth,DateTime
+Residence Address,PARResidenceAddress,Text
+Residence City,PARResidenceCity,Text
+Residence County,PARResidenceCounty,Text
+Residence State,PARResidenceState,Text
+Residence Zip,PARResidenceZip,Text
+Primary Phone Number,PARPrimaryPhoneNumber,Text
+Secondary Phone Number,PARSecondaryPhoneNumber,Text
+Driver?s License Number,PARDriver_x2019_sLicenseNumber,Text
+Driver?s License State,PARDriver_x2019_sLicenseState,Text
+Data Entry Function,PARDataEntryFunction,Text
+EIN Number,PAREINNumber,Text
+Operator I.D.,PAROperatorI_x002e_D_x002e_,Text
+HRIS Entry Date,PARHRISEntryDate,DateTime
+Employee Status,PAREmployeeStatus,Text
+Regret Separation,PARRegrettableAttrition,Note
+Separation Reason,PARSeparationReason,Note
+Sort Order,PARSortOrder,Text
+General Notes,PARGeneralNotes,Note
+View Flow,ViewFlow,URL
+Division,PARDivision,Text
+Funding Assistant Director Signature,PARFundingAssistantDirectorSigna,Text
+Background Check,PARBackgroundCheck,Text
+Human Resources Major Received Date,PARHumanResourcesMajorReceivedDa,DateTime
+Human Resources Major Signature,PARHumanResourcesMajorSignature,Text
+Human Resources Major Approval Date,PARHumanResourcesMajorApprovalDa,DateTime
+Step Number,PARStepNumber,Text
+Badge Number,PARBadgeNumber,Text
+Correction,PARCorrection,Text
+Read Only,PARReadOnly,Text
+Workflow Instance ID,WorkflowInstanceID1,Text
+Operator I.D. 2,PAROperatorI_x002e_D_x002e_2,Text
+HRIS Entry Date 2,PARHRISEntryDate2,DateTime
+TBD,PARTBD,Text
+Division Admin Received Date,PARDivisionAdminReceivedDate,DateTime
+Division Admin Review Date,Division_x0020_Admin_x0020_Revie,DateTime
+Division Admin Signature,PARDivisionAdminSignature,Text
+Budget Supervisor Received Date,PARBudgetSupervisorReceivedDate,DateTime
+Budget Supervisor Review Date,PARBudgetSupervisorReviewDate,DateTime
+Budget Supervisor Signature,PARBudgetSupervisorSignature,Text
+Hiring/Receiving Manager Outcome,PARHiring_x002f_ReceivingManager1,Text
+Budget Supervisor Outcome,PARBudgetSupervisorOutcome,Text
+Division Admin Outcome,PARDivisionAdminOutcome,Text
+Executive Secretary/Staff Sargent Approval Date,PARExecutiveSecretary_x005F_x002,DateTime
+Executive Secretary/Staff Sargent Received Date,PARExecutiveSecretary_x005F_x0020,DateTime
+Executive Secretary/Staff Sargent Outcome,PARExecutiveSecretary_x002f_Staf,Text
+Executive Secretary/Staff Sargent Signature,PARExecutiveSecretary_x005F_x0021,Text
+Hiring/Receiving Assistant Director Outcome,PARHiring_x002f_ReceivingAssista,Text
+Departing Assistant Director Outcome,PARDepartingAssistantDirectorOut,Text
+Funding Assistant Director Outcome,PARFundingAssistantDirectorOutco,Text
+Position Control Data Entry Outcome,PARPositionControlDataEntryOutco,Text
+Position Control Review Outcome,PARPositionControlReviewOutcome,Text
+Budget Officer Outcome,PARBudgetOfficerOutcome,Text
+LEMSC Outcome,PARLEMSCOutcome,Text
+Human Resources Analyst Outcome,PARHumanResourcesAnalystOutcome,Text
+Human Resources Major Outcome,PARHumanResourcesMajorOutcome,Text
+Director Outcome,PARDirectorOutcome,Text
+Payroll Data Entry Outcome,PARPayrollDataEntryOutcome,Text
+Cadet Or Pre-hire,PARCadetOrPrehire,Text
+Temporary Division,PARTemporaryDivision,Text
+Associated PARs,PARAssociatedPARs,Text
+Bi-Annual Reorganization,PARBiAnnualReorganization,Text
+Planning & Research Initial Review Received Date,PARPlanningResearchInitialReview,DateTime
+Planning & Research Initial Review Signature,PARPlanningResearchInitialReview0,Text
+Planning & Research Initial Review Review Date,PARPlanningResearchInitialReview1,DateTime
+Planning & Research Initial Review Outcome,PARPlanningResearchInitialReview2,Text
+Planning & Research Final Review Received Date,PARPlanningResearchFinalReviewRe,DateTime
+Planning & Research Final Review Signature,PARPlanningResearchFinalReviewSi,Text
+Planning & Research Final Review Review Date,PARPlanningResearchFinalReviewRe0,DateTime
+Planning & Research Final Review Outcome,PARPlanningResearchFinalReviewOu,Text
+Same As Mailing Address,PARSameAsMailingAddress,Text
+Human Resources Records Signature,PARHumanResourcesRecordsSignatur,Text
+Human Resources Records Received Date,PARHumanResourcesRecordsReceived,DateTime
+Human Resources Records Approval Date,PARHumanResourcesRecordsApproval,DateTime
+Human Resources Records Outcome,PARHumanResourcesRecordsOutcome,Text

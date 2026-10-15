@@ -1,0 +1,234 @@
+<CreateTeams> <!-- For additional workspaces duplicate the <Team> section -->
+    <Team>
+        <DisplayName>Teams Creation - Public - test11</DisplayName> <!-- This Team is for the communications teams to manage content that will be shared through the communciations app. -->
+        <Description>This team workspace is created to test the Teams Creation Scripts.</Description>
+        <MailNickName>TeamsCreationPublictest11</MailNickName>
+        <TeamSettings>
+            <Visibility>Public</Visibility> <!-- Can be set to Private or Public. Controls if a user can join a team or needs to be added. -->
+            <Classification></Classification> <!-- This is a label for the M365 group and must pre-exist. Should be thought of as metadata as no policies are actually associated with this. -->
+            <SensitivityLabels></SensitivityLabels> <!-- Must be existing sensitivity label (GUID) in Azure Information Protection (AIP) in the client tenant -->
+            <AllowAddRemoveApps>true</AllowAddRemoveApps>
+            <AllowChannelMentions>true</AllowChannelMentions>
+            <AllowCreateUpdateChannels>true</AllowCreateUpdateChannels>
+            <AllowCreateUpdateRemoveConnectors>true</AllowCreateUpdateRemoveConnectors>
+            <AllowCreateUpdateRemoveTabs>true</AllowCreateUpdateRemoveTabs>
+            <AllowCustomMemes>true</AllowCustomMemes>
+            <AllowDeleteChannels>true</AllowDeleteChannels>
+            <AllowGiphy>true</AllowGiphy>
+            <AllowGuestCreateUpdateChannels>false</AllowGuestCreateUpdateChannels>
+            <AllowGuestDeleteChannels>false</AllowGuestDeleteChannels>
+            <AllowOwnerDeleteMessages>true</AllowOwnerDeleteMessages>
+            <AllowStickersAndMemes>true</AllowStickersAndMemes>
+            <AllowTeamMentions>true</AllowTeamMentions>
+            <AllowUserDeleteMessages>true</AllowUserDeleteMessages>
+            <AllowUserEditMessages>true</AllowUserEditMessages>
+            <GiphyContentRating>moderate</GiphyContentRating> <!-- moderate or strict -->
+            <ShowInTeamsSearchAndSuggestions>true</ShowInTeamsSearchAndSuggestions>
+            <ResourceBehaviorOptions></ResourceBehaviorOptions> <!-- Configures Settings on M365 group. Accepted Values {AllowOnlyMembersToPost, HideGroupInOutlook, SubscribeNewGroupMembers, WelcomeEmailDisabled} -->
+        </TeamSettings>
+        <Owners><!-- Create a row for each owner to add to the group. -->
+            <Owner>nickp@nrpdev.com</Owner> <!-- User UPN; Can add multiple rows-->
+            <Owner>AdeleV@nrpdev.com</Owner> 
+        </Owners>
+        <Members> <!-- Create a row for each member to add to the group. If this is a Org-Wide group, delete all "Member" rows but keep the "Members" start & end tags -->
+            <Member>DiegoS@nrpdev.com</Member> <!-- User UPN; Can add multiple rows-->
+            <Member>AlexW@nrpdev.com</Member>
+            <Member>GradyA@nrpdev.com</Member>
+            <Member>HenriettaM@nrpdev.com</Member>
+        </Members>
+        <Channels> <!-- List the channels that need to be created on this team in addition to the General Channel.  The general Channel will be created automatically -->
+            <Channel>
+                <DisplayName>Standard Channel test11</DisplayName>
+                <Description>This is a standard channel to test the teams provisioning.</Description>
+                <ChannelType>Standard</ChannelType> <!-- Accepted Options: {Standard, Private, and Shared} Private should only be used for very specific business cases as it limits Teams capabilities within that channel. 
+                    Often a dedicated team is better. Shared is prerelease capability. Documation ahead of module, there is no -ChannelType parameter in module yet  -->
+                <IsFavoriteByDefault>false</IsFavoriteByDefault> <!-- For Standard and Shared channels Only. -->
+                <OwnerUPN></OwnerUPN> <!-- For Private and Shared channels Only. Owner will need to setup other channel members. -->
+            </Channel>
+            <Channel>
+                <DisplayName>Private Channel test11</DisplayName>
+                <Description>This is a Private channel to test the teams provisioning.</Description>
+                <ChannelType>Standard</ChannelType> <!-- Accepted Options: {Standard, Private, and Shared} Private should only be used for very specific business cases as it limits Teams capabilities within that channel. 
+                    Often a dedicated team is better. Shared is prerelease capability. Documation ahead of module, there is no -ChannelType parameter in module yet  -->
+                <IsFavoriteByDefault>false</IsFavoriteByDefault> <!-- For Standard and Shared channels Only. -->
+                <OwnerUPN>nickp@nrpdev.com</OwnerUPN> <!-- For Private and Shared channels Only. Owner will need to setup other channel members. -->
+            </Channel>
+            <Channel>
+                <DisplayName>Standard Channel test11b</DisplayName>
+                <Description>This is a standard channel to test the teams provisioning.</Description>
+                <ChannelType>Standard</ChannelType> <!-- Accepted Options: {Standard, Private, and Shared} Private should only be used for very specific business cases as it limits Teams capabilities within that channel. 
+                    Often a dedicated team is better. Shared is prerelease capability. Documation ahead of module, there is no -ChannelType parameter in module yet  -->
+                <IsFavoriteByDefault>false</IsFavoriteByDefault> <!-- For Standard and Shared channels Only. -->
+                <OwnerUPN></OwnerUPN> <!-- For Private and Shared channels Only. Owner will need to setup other channel members. -->
+            </Channel>
+        </Channels>
+    </Team>
+    <Team>
+        <DisplayName>Teams Creation - Private - test11</DisplayName> <!-- This Team is for the communications teams to manage content that will be shared through the communciations app. -->
+        <Description>This team workspace is created to test the Teams Creation Scripts.</Description>
+        <MailNickName>TeamsCreationPrivatetest11</MailNickName>
+        <TeamSettings>
+            <Visibility>Private</Visibility> <!-- Can be set to Private or Public. Controls if a user can join a team or needs to be added. -->
+            <Classification></Classification> <!-- This is a label for the M365 group and must pre-exist. Should be thought of as metadata as no policies are actually associated with this. -->
+            <SensitivityLabels></SensitivityLabels> <!-- Must be existing sensitivity label (GUID) in Azure Information Protection (AIP) in the client tenant -->
+            <AllowAddRemoveApps>true</AllowAddRemoveApps>
+            <AllowChannelMentions>true</AllowChannelMentions>
+            <AllowCreateUpdateChannels>true</AllowCreateUpdateChannels>
+            <AllowCreateUpdateRemoveConnectors>true</AllowCreateUpdateRemoveConnectors>
+            <AllowCreateUpdateRemoveTabs>true</AllowCreateUpdateRemoveTabs>
+            <AllowCustomMemes>true</AllowCustomMemes>
+            <AllowDeleteChannels>true</AllowDeleteChannels>
+            <AllowGiphy>true</AllowGiphy>
+            <AllowGuestCreateUpdateChannels>false</AllowGuestCreateUpdateChannels>
+            <AllowGuestDeleteChannels>false</AllowGuestDeleteChannels>
+            <AllowOwnerDeleteMessages>true</AllowOwnerDeleteMessages>
+            <AllowStickersAndMemes>true</AllowStickersAndMemes>
+            <AllowTeamMentions>true</AllowTeamMentions>
+            <AllowUserDeleteMessages>true</AllowUserDeleteMessages>
+            <AllowUserEditMessages>true</AllowUserEditMessages>
+            <GiphyContentRating>moderate</GiphyContentRating> <!-- moderate or strict -->
+            <ShowInTeamsSearchAndSuggestions>true</ShowInTeamsSearchAndSuggestions>
+            <ResourceBehaviorOptions></ResourceBehaviorOptions> <!-- Configures Settings on M365 group. Accepted Values {AllowOnlyMembersToPost, HideGroupInOutlook, SubscribeNewGroupMembers, WelcomeEmailDisabled} -->
+        </TeamSettings>
+        <Owners><!-- Create a row for each owner to add to the group. -->
+            <Owner>nickp@nrpdev.com</Owner> <!-- User UPN; Can add multiple rows-->
+            <Owner>AdeleV@nrpdev.com</Owner> 
+        </Owners>
+        <Members> <!-- Create a row for each member to add to the group. If this is a Org-Wide group, delete all "Member" rows but keep the "Members" start & end tags -->
+            <Member>DiegoS@nrpdev.com</Member> <!-- User UPN; Can add multiple rows-->
+            <Member>AlexW@nrpdev.com</Member>
+            <Member>GradyA@nrpdev.com</Member>
+            <Member>HenriettaM@nrpdev.com</Member>
+        </Members>
+        <Channels> <!-- List the channels that need to be created on this team in addition to the General Channel.  The general Channel will be created automatically -->
+            <Channel>
+                <DisplayName>Standard Channel test11</DisplayName>
+                <Description>This is a standard channel to test the teams provisioning.</Description>
+                <ChannelType>Standard</ChannelType> <!-- Accepted Options: {Standard, Private, and Shared} Private should only be used for very specific business cases as it limits Teams capabilities within that channel. 
+                    Often a dedicated team is better. Shared is prerelease capability. Documation ahead of module, there is no -ChannelType parameter in module yet  -->
+                <IsFavoriteByDefault>false</IsFavoriteByDefault> <!-- For Standard and Shared channels Only. -->
+                <OwnerUPN></OwnerUPN> <!-- For Private and Shared channels Only. Owner will need to setup other channel members. -->
+            </Channel>
+            <Channel>
+                <DisplayName>Private Channel test11</DisplayName>
+                <Description>This is a Private channel to test the teams provisioning.</Description>
+                <ChannelType>Standard</ChannelType> <!-- Accepted Options: {Standard, Private, and Shared} Private should only be used for very specific business cases as it limits Teams capabilities within that channel. 
+                    Often a dedicated team is better. Shared is prerelease capability. Documation ahead of module, there is no -ChannelType parameter in module yet  -->
+                <IsFavoriteByDefault>false</IsFavoriteByDefault> <!-- For Standard and Shared channels Only. -->
+                <OwnerUPN>nickp@nrpdev.com</OwnerUPN> <!-- For Private and Shared channels Only. Owner will need to setup other channel members. -->
+            </Channel>
+        </Channels>
+    </Team>
+    <Team>
+        <DisplayName>Teams Creation - Private, Behavior Options - test11</DisplayName> <!-- This Team is for the communications teams to manage content that will be shared through the communciations app. -->
+        <Description>This team workspace is created to test the Teams Creation Scripts.</Description>
+        <MailNickName>TeamsCreationPrivateBehaviorOptionstest11</MailNickName>
+        <TeamSettings>
+            <Visibility>Private</Visibility> <!-- Can be set to Private or Public. Controls if a user can join a team or needs to be added. -->
+            <Classification></Classification> <!-- This is a label for the M365. Should be thought of as metadata as no policies are actually associated with this. -->
+            <SensitivityLabels></SensitivityLabels> <!-- Must be existing sensitivity label (GUID) in Azure Information Protection (AIP) in the client tenant -->
+            <AllowAddRemoveApps>true</AllowAddRemoveApps>
+            <AllowChannelMentions>true</AllowChannelMentions>
+            <AllowCreateUpdateChannels>true</AllowCreateUpdateChannels>
+            <AllowCreateUpdateRemoveConnectors>true</AllowCreateUpdateRemoveConnectors>
+            <AllowCreateUpdateRemoveTabs>true</AllowCreateUpdateRemoveTabs>
+            <AllowCustomMemes>true</AllowCustomMemes>
+            <AllowDeleteChannels>true</AllowDeleteChannels>
+            <AllowGiphy>true</AllowGiphy>
+            <AllowGuestCreateUpdateChannels>false</AllowGuestCreateUpdateChannels>
+            <AllowGuestDeleteChannels>false</AllowGuestDeleteChannels>
+            <AllowOwnerDeleteMessages>true</AllowOwnerDeleteMessages>
+            <AllowStickersAndMemes>true</AllowStickersAndMemes>
+            <AllowTeamMentions>true</AllowTeamMentions>
+            <AllowUserDeleteMessages>true</AllowUserDeleteMessages>
+            <AllowUserEditMessages>true</AllowUserEditMessages>
+            <GiphyContentRating>moderate</GiphyContentRating> <!-- moderate or strict -->
+            <ShowInTeamsSearchAndSuggestions>true</ShowInTeamsSearchAndSuggestions>
+            <ResourceBehaviorOptions>HideGroupInOutlook, WelcomeEmailDisabled</ResourceBehaviorOptions> <!-- Configures Settings on M365 group. Accepted Values {AllowOnlyMembersToPost, HideGroupInOutlook, SubscribeNewGroupMembers, WelcomeEmailDisabled} -->
+        </TeamSettings>
+        <Owners><!-- Create a row for each owner to add to the group. -->
+            <Owner>nickp@nrpdev.com</Owner> <!-- User UPN; Can add multiple rows-->
+            <Owner>AdeleV@nrpdev.com</Owner> 
+        </Owners>
+        <Members> <!-- Create a row for each member to add to the group. If this is a Org-Wide group, delete all "Member" rows but keep the "Members" start & end tags -->
+            <Member>DiegoS@nrpdev.com</Member> <!-- User UPN; Can add multiple rows-->
+            <Member>AlexW@nrpdev.com</Member>
+            <Member>GradyA@nrpdev.com</Member>
+            <Member>HenriettaM@nrpdev.com</Member>
+        </Members>
+        <Channels> <!-- List the channels that need to be created on this team in addition to the General Channel.  The general Channel will be created automatically -->
+            <Channel>
+                <DisplayName>Standard Channel test11</DisplayName>
+                <Description>This is a standard channel to test the teams provisioning.</Description>
+                <ChannelType>Standard</ChannelType> <!-- Accepted Options: {Standard, Private, and Shared} Private should only be used for very specific business cases as it limits Teams capabilities within that channel. 
+                    Often a dedicated team is better. Shared is prerelease capability. Documation ahead of module, there is no -ChannelType parameter in module yet  -->
+                <IsFavoriteByDefault>false</IsFavoriteByDefault> <!-- For Standard and Shared channels Only. -->
+                <OwnerUPN></OwnerUPN> <!-- For Private and Shared channels Only. Owner will need to setup other channel members. -->
+            </Channel>
+            <Channel>
+                <DisplayName>Private Channel test11</DisplayName>
+                <Description>This is a Private channel to test the teams provisioning.</Description>
+                <ChannelType>Standard</ChannelType> <!-- Accepted Options: {Standard, Private, and Shared} Private should only be used for very specific business cases as it limits Teams capabilities within that channel. 
+                    Often a dedicated team is better. Shared is prerelease capability. Documation ahead of module, there is no -ChannelType parameter in module yet  -->
+                <IsFavoriteByDefault>false</IsFavoriteByDefault> <!-- For Standard and Shared channels Only. -->
+                <OwnerUPN>nickp@nrpdev.com</OwnerUPN> <!-- For Private and Shared channels Only. Owner will need to setup other channel members. -->
+            </Channel>
+        </Channels>
+    </Team>
+    <Team>
+        <DisplayName>Teams Creation - Public - test11b</DisplayName> <!-- This Team is for the communications teams to manage content that will be shared through the communciations app. -->
+        <Description>This team workspace is created to test the Teams Creation Scripts.</Description>
+        <MailNickName>TeamsCreationPublictest11b</MailNickName>
+        <TeamSettings>
+            <Visibility>Public</Visibility> <!-- Can be set to Private or Public. Controls if a user can join a team or needs to be added. -->
+            <Classification></Classification> <!-- This is a label for the M365 group and must pre-exist. Should be thought of as metadata as no policies are actually associated with this. -->
+            <SensitivityLabels></SensitivityLabels> <!-- Must be existing sensitivity label (GUID) in Azure Information Protection (AIP) in the client tenant -->
+            <AllowAddRemoveApps>true</AllowAddRemoveApps>
+            <AllowChannelMentions>true</AllowChannelMentions>
+            <AllowCreateUpdateChannels>true</AllowCreateUpdateChannels>
+            <AllowCreateUpdateRemoveConnectors>true</AllowCreateUpdateRemoveConnectors>
+            <AllowCreateUpdateRemoveTabs>true</AllowCreateUpdateRemoveTabs>
+            <AllowCustomMemes>true</AllowCustomMemes>
+            <AllowDeleteChannels>true</AllowDeleteChannels>
+            <AllowGiphy>true</AllowGiphy>
+            <AllowGuestCreateUpdateChannels>false</AllowGuestCreateUpdateChannels>
+            <AllowGuestDeleteChannels>false</AllowGuestDeleteChannels>
+            <AllowOwnerDeleteMessages>true</AllowOwnerDeleteMessages>
+            <AllowStickersAndMemes>true</AllowStickersAndMemes>
+            <AllowTeamMentions>true</AllowTeamMentions>
+            <AllowUserDeleteMessages>true</AllowUserDeleteMessages>
+            <AllowUserEditMessages>true</AllowUserEditMessages>
+            <GiphyContentRating>moderate</GiphyContentRating> <!-- moderate or strict -->
+            <ShowInTeamsSearchAndSuggestions>true</ShowInTeamsSearchAndSuggestions>
+            <ResourceBehaviorOptions></ResourceBehaviorOptions> <!-- Configures Settings on M365 group. Accepted Values {AllowOnlyMembersToPost, HideGroupInOutlook, SubscribeNewGroupMembers, WelcomeEmailDisabled} -->
+        </TeamSettings>
+        <Owners><!-- Create a row for each owner to add to the group. -->
+            <Owner>nickp@nrpdev.com</Owner> <!-- User UPN; Can add multiple rows-->
+            <Owner>AdeleV@nrpdev.com</Owner> 
+        </Owners>
+        <Members> <!-- Create a row for each member to add to the group. If this is a Org-Wide group, delete all "Member" rows but keep the "Members" start & end tags -->
+            <Member>DiegoS@nrpdev.com</Member> <!-- User UPN; Can add multiple rows-->
+            <Member>AlexW@nrpdev.com</Member>
+            <Member>GradyA@nrpdev.com</Member>
+            <Member>HenriettaM@nrpdev.com</Member>
+        </Members>
+        <Channels> <!-- List the channels that need to be created on this team in addition to the General Channel.  The general Channel will be created automatically -->
+            <Channel>
+                <DisplayName>Standard Channel test11</DisplayName>
+                <Description>This is a standard channel to test the teams provisioning.</Description>
+                <ChannelType>Standard</ChannelType> <!-- Accepted Options: {Standard, Private, and Shared} Private should only be used for very specific business cases as it limits Teams capabilities within that channel. 
+                    Often a dedicated team is better. Shared is prerelease capability. Documation ahead of module, there is no -ChannelType parameter in module yet  -->
+                <IsFavoriteByDefault>false</IsFavoriteByDefault> <!-- For Standard and Shared channels Only. -->
+                <OwnerUPN></OwnerUPN> <!-- For Private and Shared channels Only. Owner will need to setup other channel members. -->
+            </Channel>
+            <Channel>
+                <DisplayName>Private Channel test11</DisplayName>
+                <Description>This is a Private channel to test the teams provisioning.</Description>
+                <ChannelType>Standard</ChannelType> <!-- Accepted Options: {Standard, Private, and Shared} Private should only be used for very specific business cases as it limits Teams capabilities within that channel. 
+                    Often a dedicated team is better. Shared is prerelease capability. Documation ahead of module, there is no -ChannelType parameter in module yet  -->
+                <IsFavoriteByDefault>false</IsFavoriteByDefault> <!-- For Standard and Shared channels Only. -->
+                <OwnerUPN>nickp@nrpdev.com</OwnerUPN> <!-- For Private and Shared channels Only. Owner will need to setup other channel members. -->
+            </Channel>
+        </Channels>
+    </Team>
+</CreateTeams>

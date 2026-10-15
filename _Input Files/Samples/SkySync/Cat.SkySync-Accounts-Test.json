@@ -1,0 +1,82 @@
+[
+    {
+        "name":  "SPO-SA1-",
+        "platform":  "office365",
+        "type":  "automatic",
+        "username":  "o365-skysync-odb-sa1@client.com",
+        "password":  "TempPassword",
+        "uri":  "TempURL"
+    },
+    {
+        "name":  "SPO-SA2-",
+        "platform":  "office365",
+        "type":  "automatic",
+        "username":  "o365-skysync-odb-sa2@client.com",
+        "password":  "TempPassword",
+        "uri":  "TempURL"
+    },
+    {
+        "name":  "SPO-SA3-",
+        "platform":  "office365",
+        "type":  "automatic",
+        "username":  "o365-skysync-odb-sa3@client.com",
+        "password":  "TempPassword",
+        "uri":  "TempURL"
+    },
+    {
+        "name":  "SPO-SA4-",
+        "platform":  "office365",
+        "type":  "automatic",
+        "username":  "o365-skysync-odb-sa4@client.com",
+        "password":  "TempPassword",
+        "uri":  "TempURL"
+    },
+    {
+        "name":  "SPO-SA5-",
+        "platform":  "office365",
+        "type":  "automatic",
+        "username":  "o365-skysync-odb-sa5@client.com",
+        "password":  "TempPassword",
+        "uri":  "TempURL"
+    },
+    {
+        "name":  "SPO-SA6-",
+        "platform":  "office365",
+        "type":  "automatic",
+        "username":  "o365-skysync-spo-sa1@client.com",
+        "password":  "TempPassword",
+        "uri":  "TempURL"
+    },
+    {
+        "name":  "SPO-SA7-",
+        "platform":  "office365",
+        "type":  "automatic",
+        "username":  "o365-skysync-spo-sa2@client.com",
+        "password":  "TempPassword",
+        "uri":  "TempURL"
+    },
+    {
+        "name":  "SPO-SA8-",
+        "platform":  "office365",
+        "type":  "automatic",
+        "username":  "o365-skysync-spo-sa3@client.com",
+        "password":  "TempPassword",
+        "uri":  "TempURL"
+    },
+    {
+        "name":  "SPO-SA9-",
+        "platform":  "office365",
+        "type":  "automatic",
+        "username":  "o365-skysync-spo-sa4@client.com",
+        "password":  "TempPassword",
+        "uri":  "TempURL"
+    },
+    {
+        "name":  "SPO-SA10-",
+        "platform":  "office365",
+        "type":  "automatic",
+        "username":  "o365-skysync-spo-sa5@client.com",
+        "password":  "TempPassword",
+        "uri":  "TempURL"
+    }
+]

@@ -1,0 +1,6 @@
+$result = Find-CopySessions -From "2024/01/16" -To "2024/01/18"
+$result | Export-Csv -Path "C:\Quisitive\MIG10-240116-240118.csv"
+$result = Find-CopySessions -From "2024/01/21" -To "2024/01/25"
+$result | Export-Csv -Path "C:\Quisitive\MIG10-240121-240125.csv"
+$result = Find-CopySessions -From "2024/01/29" -To "2024/01/31"
+$result | Export-Csv -Path "C:\Quisitive\MIG10-240129-240131.csv"

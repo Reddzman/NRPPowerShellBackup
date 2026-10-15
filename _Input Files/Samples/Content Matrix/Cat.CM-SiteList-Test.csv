@@ -1,0 +1,7 @@
+﻿title,srcURL,dstURL,ownerPrimary,timezone,template
+Test Modern Team Site,https://nrpdev.sharepoint.com/sites/test-modernteam,https://nrpdev.sharepoint.com/sites/wrtest07-test-modernteam,nickp@nrpdev.com,12,GROUP#0
+OOtB Classic SharePoint Team Site,https://nrpdev.sharepoint.com/sites/OOtBClassicSharePointTeamSite,https://nrpdev.sharepoint.com/sites/wrtest07-OOtBClassicSharePointTeamSite,nickp@nrpdev.com,12,STS#0
+Sample Customer Site,https://nrpdev.sharepoint.com/sites/SampleCustomerSite,https://nrpdev.sharepoint.com/sites/wrtest07-SampleCustomerSite,nickp@nrpdev.com,12,SITEPAGEPUBLISHING#0
+est Document Center,https://nrpdev.sharepoint.com/sites/TestDocumentCenter,https://nrpdev.sharepoint.com/sites/wrtest07-TestDocumentCenter,nickp@nrpdev.com,12,BDR#0
+Test Enterprise Wiki,https://nrpdev.sharepoint.com/sites/TestEnterpriseWiki,https://nrpdev.sharepoint.com/sites/wrtest07-TestEnterpriseWiki,nickp@nrpdev.com,12,ENTERWIKI#0
+Test Publishing,https://nrpdev.sharepoint.com/sites/test-pubsite,https://nrpdev.sharepoint.com/sites/wrtest07-test-pubsite,nickp@nrpdev.com,12,STS#0

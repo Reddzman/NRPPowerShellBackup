@@ -1,0 +1,3 @@
+﻿Title,Url,SiteOwners,SiteType,Template,ConnectedToTeams,ConnectedToM365Group,RetentionPolicy,VersionHistoryMode,StorageUsedGB,StorageQuotaGB
+M365 Admins,https://nrpdev2.sharepoint.com/sites/M365Admins,,Classic,PWA#0,No,No,See Microsoft Purview,Inherited / Not Set,0.13,25600
+Migration Project,https://nrpdev2.sharepoint.com/teams/MigrationProject,,Classic,PWA#0,No,No,See Microsoft Purview,Inherited / Not Set,0.13,25600

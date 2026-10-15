@@ -1,0 +1,7 @@
+﻿sourceUserEmail,destUserEmail,migrateCustomPermissions,versions,migrateContent
+AlexW@nrpdev.com,AdeleV@nrpdev.com,TRUE,25,TRUE
+AdeleV@nrpdev.com,AlexW@nrpdev.com,TRUE,25,TRUE
+DiegoS@nrpdev.com,GradyA@nrpdev.com,TRUE,26,TRUE
+HenriettaM@nrpdev.com,IsaiahL@nrpdev.com,TRUE,27,TRUE
+SRC-UNKNOWN@nrpdev.com,JohannaL@nrpdev.com,TRUE,25,TRUE
+JoniS@nrpdev.com,DST-UNKNOWN@nrpdev.com,TRUE,25,TRUE

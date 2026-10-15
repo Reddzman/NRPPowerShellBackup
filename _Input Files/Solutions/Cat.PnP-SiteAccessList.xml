@@ -1,0 +1,43 @@
+<InfoArch> <!-- Client Initial Information Architecture -->
+    <SkipTermStore>Yes</SkipTermStore>
+    <TermGroups></TermGroups>
+    <TermSets></TermSets>
+    <Terms></Terms>
+    <Fields>
+        <Field Type="Text" Group="Site Access Columns" ID="{d42152bd-9c68-4b16-86e0-d9f0ab8c13d5}" StaticName="SiteURL" Name="SiteURL" DisplayName="Site URL" Description="" LCID="1033" ReadOnly="FALSE" Required="FALSE">
+        </Field>
+        <Field Type="Text" Group="Site Access Columns" ID="{36d4cd06-79a2-4fdb-940d-803e39ce5a2d}" StaticName="ItemTitle" Name="ItemTitle" DisplayName="Item Title" Description="" LCID="1033" ReadOnly="FALSE" Required="FALSE">
+        </Field>
+        <Field Type="Text" Group="Site Access Columns" ID="{a74b41e8-001b-4249-aa4e-21bcf6f718d3}" StaticName="ItemURL" Name="ItemURL" DisplayName="Item URL" Description="" LCID="1033" ReadOnly="FALSE" Required="FALSE">
+        </Field>
+        <Field Type="Text" Group="Site Access Columns" ID="{8b103d1c-953c-4c49-b876-da76633c27da}" StaticName="DirectAccessURL" Name="DirectAccessURL" DisplayName="Direct Access URL" Description="" LCID="1033" ReadOnly="FALSE" Required="FALSE">
+        </Field>
+        <Field Type="Text" Group="Site Access Columns" ID="{2b37c5c8-6597-4892-a965-8cc989b23dc0}" StaticName="PermissionGivenThrough" Name="PermissionGivenThrough" DisplayName="Permission Given Through" Description="" LCID="1033" ReadOnly="FALSE" Required="FALSE">
+        </Field>
+        <Field Type="Text" Group="Site Access Columns" ID="{0019bc72-c99b-454c-aa22-ae143a7a1bb9}" StaticName="ObjectType" Name="ObjectType" DisplayName="Object Type" Description="" LCID="1033" ReadOnly="FALSE" Required="FALSE">
+        </Field>
+        <Field Type="Text" Group="Site Access Columns" ID="{aab54914-2279-4683-b106-eed4d18f58f2}" StaticName="ObjectName" Name="ObjectName" DisplayName="Object Name" Description="" LCID="1033" ReadOnly="FALSE" Required="FALSE">
+        </Field>
+        <Field Type="Text" Group="Site Access Columns" ID="{3d792bdd-b20b-4fd8-85e0-36a3714283c5}" StaticName="ObjectEmail" Name="ObjectEmail" DisplayName="Object Email" Description="" LCID="1033" ReadOnly="FALSE" Required="FALSE">
+        </Field>
+        <Field Type="Text" Group="Site Access Columns" ID="{4b76b500-ffaf-4cb8-9855-5054ee4326bf}" StaticName="PermissionGiven" Name="PermissionGiven" DisplayName="Permission Given" Description="" LCID="1033" ReadOnly="FALSE" Required="FALSE">
+        </Field>
+    </Fields>
+    <ContentTypes>
+        <ContentType><Name>Site Access Item</Name>
+            <Group>Site Access Content Types</Group>
+            <Parent>Item</Parent>
+            <Fields>
+                <Field>SiteURL</Field>
+                <Field>ItemTitle</Field>
+                <Field>ItemURL</Field>
+                <Field>DirectAccessURL</Field>
+                <Field>PermissionGivenThrough</Field>
+                <Field>ObjectType</Field>
+                <Field>ObjectName</Field>
+                <Field>ObjectEmail</Field>
+                <Field>PermissionGiven</Field>
+            </Fields>
+        </ContentType>
+    </ContentTypes>
+</InfoArch>

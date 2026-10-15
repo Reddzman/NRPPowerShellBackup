@@ -1,0 +1,138 @@
+{
+    "name":"{Job Name}",
+    "kind": "transfer",
+    "category": {"name": "{Category Name}"},
+    "transfer": {
+        "simulation_mode": true,
+        "transfer_type":"sync",
+        "audit_level":"trace",
+        "batch_mode":"always",
+        "performance":{
+            "parallel_writes":{
+            "requested":6
+            }
+        },
+        "account_map": {
+            "id": "2c2c0aceeb324e60abe757059fa280f7",
+            "type": "account_map"
+        },
+        "group_map": {
+            "id": "1aba77cdd51747ce9b0a3600931810d1",
+            "type": "group_map"
+         },
+        "versioning":{
+            "preserve":"native",
+            "select":"all"
+        },
+        "timestamps":true,
+        "preserve_owners":true,
+        "permissions": {
+            "policy": "diff",
+            "failures": "none"
+        },
+        "conflict_resolution":"copy",
+        "delete_propagation":"mirror",
+        "lock_propagation":"mirror_lock",
+        "segment_transform":true,
+        "filter": {
+            "destination": [
+                {
+                    "action": "exclude",
+                    "rules": [
+                        {
+                            "extensions": [
+                                "boxnote"
+                            ],
+                            "type": "filter_extension"
+                        }
+                    ],
+                    "type": "filter_rule"
+                },
+                {
+                    "action": "exclude",
+                    "rules": [
+                        {
+                            "targets": [
+                                "container"
+                            ],
+                            "text": "*",
+                            "type": "filter_pattern"
+                        }
+                    ],
+                    "type": "filter_rule"
+                },
+                {
+                    "action": "exclude",
+                    "rules": [
+                        {
+                            "type": "filter_shared"
+                        }
+                    ],
+                    "type": "filter_rule"
+                }
+            ],
+            "source": [
+                {
+                    "action": "exclude",
+                    "rules": [
+                        {
+                            "extensions": [
+                                "boxnote"
+                            ],
+                            "type": "filter_extension"
+                        }
+                    ],
+                    "type": "filter_rule"
+                },
+                {
+                    "action": "exclude",
+                    "rules": [
+                        {
+                            "targets": [
+                                "container"
+                            ],
+                            "text": "*",
+                            "type": "filter_pattern"
+                        }
+                    ],
+                    "type": "filter_rule"
+                },
+                {
+                    "action": "exclude",
+                    "rules": [
+                        {
+                            "type": "filter_shared"
+                        }
+                    ],
+                    "type": "filter_rule"
+                }
+            ]
+        },
+        "source": {
+            "connection": {
+                "id": "66a56d049e77420095094606be91d119"
+            },
+            "impersonate_as": {
+                "email": "{source_email}"
+            },
+            "target":{
+                "path":"{Replace Source Path}"
+             }
+        },
+        "destination": {
+            "connection": {
+                "id": "3cc743ca15c64ed08dac3365f466ce06"
+            },
+            "target":{
+                "path":"{Replace Destination Path}"
+             },
+            "impersonate_as":{
+                "username":"{destination_user_name}",
+                "email":"{destination_user_name}"
+            }
+        }
+    },
+    "schedule": {
+        "mode": "manual"
+    }
+}

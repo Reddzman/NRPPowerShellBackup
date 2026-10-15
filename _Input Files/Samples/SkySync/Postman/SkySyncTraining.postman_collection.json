@@ -1,0 +1,2200 @@
+{
+	"info": {
+		"_postman_id": "2e80dfb9-0111-485e-b8d5-22833ab39b1d",
+		"name": "SkySyncTraining",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Authenticate",
+			"item": [
+				{
+					"name": "Refresh Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code is OK\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"has access_token\"] = jsonData.access_token !== null && jsonData.access_token.length > 0;",
+									"tests[\"has refresh_token\"] = jsonData.refresh_token !== null && jsonData.refresh_token.length > 0;",
+									"",
+									"postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);",
+									"postman.setEnvironmentVariable(\"refresh_token\", jsonData.refresh_token);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "refresh_token",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "offline_access profile roles",
+									"type": "text"
+								},
+								{
+									"key": "resource",
+									"value": "{{url}}",
+									"type": "text"
+								},
+								{
+									"key": "refresh_token",
+									"value": "{{refresh_token}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}connect/token",
+							"host": [
+								"{{url}}connect"
+							],
+							"path": [
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get My Access token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code is OK\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"tests[\"has access_token\"] = jsonData.access_token !== null && jsonData.access_token.length > 0;",
+									"tests[\"has refresh_token\"] = jsonData.refresh_token !== null && jsonData.refresh_token.length > 0;",
+									"",
+									"postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);",
+									"postman.setEnvironmentVariable(\"refresh_token\", jsonData.refresh_token);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "grant_type",
+									"value": "password",
+									"type": "text"
+								},
+								{
+									"key": "scope",
+									"value": "offline_access profile roles",
+									"type": "text"
+								},
+								{
+									"key": "resource",
+									"value": "{{url}}",
+									"type": "text"
+								},
+								{
+									"key": "username",
+									"value": "{{username}}",
+									"type": "text"
+								},
+								{
+									"key": "password",
+									"value": "{{password}}",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}connect/token",
+							"host": [
+								"{{url}}connect"
+							],
+							"path": [
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Connections",
+			"item": [
+				{
+					"name": "List All Connections",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/connections",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"connections"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Connection Accounts",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/connections/{{cloud_connection}}/accounts/",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"connections",
+								"{{cloud_connection}}",
+								"accounts",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Connection Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/connections/{{nfs_connection}}",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"connections",
+								"{{nfs_connection}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Box Service Account Connection",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"platform\":{\r\n        \"id\":\"box-service\"\r\n    },\r\n    \"auth\":{\r\n        \"private_key\":\"-----BEGIN RSA PRIVATE KEY-----\r\nProc-Type: 4,ENCRYPTED\r\nDEK-Info: AES-256-CBC,75899C5DE9D0E62AE05B6D76881139DC\r\n\r\njJKZHEwE7JOZrIe/1FUM320A93NBkRbf86tZPwoiC1nVzkE7IlSpnwuEFccLEv9V\r\n+k3KvcNN0UaT+L+/eXRuR6UV68CZzxG2akHjqzbGEf41iNOxJeXXd0HAq0sphQm9\r\nJwdnTkX2MvtezbaIC7XYEe9H8/uEo3mdjM24cEhmBqAEElNQo3zpok7lBBllMKgQ\r\ncDpw8fi8CiBW9VxZ09/Oa6AqxDydjASp/2yNTuPDBZM+OBhl5pNfyGBXAbwvYaEV\r\n9+tmsv4FfsNIrbwtc9sBNmg8gDJdOADawzXeQ69drR5Q2a26X5f5y3CDqc/A6E0+\r\neDeNT6sUliW51ejvbjfoEcg1+vDVbw/cLyQIbHpJIwHPGDmN/56A7/Shp79rKLBT\r\nQhqjf8zWg4Qnsh/JHZCqp9lzVmsEY510b6TJapnKpYfsitOXMemyif0vxB+riehs\r\nZ/XBAQE7aJetCDB+pO8UOWgTTXwZBYvbS9oYYAQdyeS6wvQKCOEuuHwmo+BnWsy1\r\ndXYBtkius5eZdpVu1qe30CLF6/WyQ3mRge2f4Yirpc1VH53gzMWDchl90jRzoKKJ\r\nCKvwlEHdHC3QDiq0e8srM2AhxF7Fg8z3x57SMLIGl+hnjzEOCL9XAnOxYyidKLgi\r\nYnIfTwwxqe2uPHqEMb5RN4qfSjyRTdGl6pkDdhEO3Nxq/8egTwGB/5wJKWUfZUjB\r\nPoDbEiObgduCifc3eq9zEMRPf9CQ5933grlCqUAsAUyHPLliiYDtV9XO33+Kk5bZ\r\nOac5F3VazeAR7tKh9SzsGapkm6TYVrqksJTBGW9yPoVefAB8Ixn8htYYpX6byoe1\r\n0GsLAV4Af/Ri90blJKcifEdwfJa92PZfX2ty7qITdMMXEXpgZaite7ouIkUavOUF\r\nUh6csHrJojbTwmSG75ocDll4mF8JvdKS1+49SRZSwh+3Fzubo/zVjwMOupRmiWUy\r\nNhFeyVXHMmUy6FkmwiG05jLcwUaLeFADf6QT1K9ngAueGkqlWGX105p7osj2YS8+\r\n1uVBUl1djOK0gJv542QZBip1MccyDYwv94JBFpo/IIQw2PTFbC6BOXN2l8lWFSRZ\r\nuiKeCJAJfZ9YgSDYyJ2nODh8LoyWNDTLrfj07jzNr9gtttiGf6FyJDqtzGpPfGfu\r\nv094YO6jtPXTmYQk2sOEE6RRMR5tGdw/4hBY3JBpipEMbEW/zpmvthNu5V3/h34s\r\nqVIJEIhlslGJzJAGqZfJBfs7NSEmpJaEcRKIuu64PbYjBm6tdXRVqa8eQRYmSC8T\r\nLAVFa8AAHSWD1oMn/78GDHMeH4tM/mURRjskwIaVZqTOJoRRvFbg9SMGH812FZOn\r\n8Dhu1VTxfb/Faf7j6qoeSfwxW0A0hkZAk+wcc6iRUtb7YlIlKrW8i3vjvfdzhQ66\r\nh+7gGGR7KuUOghVLv/OuiH77Gedt96n/njti6Z/cgLNrxaHscJsa67l3+4O5jfsX\r\nK2Mgj18e3vClsm1AtpHOR7ox1LgwLd4jsNyHLyV4Me7O8IZxJuSf2QWtyEJWfVVB\r\nQNhkv9F1+UzkltBTGQrUnzvuYiamHDf9Hi5yJuOb8dPiEotWZSqVm4/kC8LWvzB+\r\n-----END RSA PRIVATE KEY----- \r\n\",\r\n        \"password\":\"notasecret\",\r\n        \"client_id\":\"vuihslbe441wjmyp0e1fvong46c7flxl\",\r\n        \"client_secret\":\"ckutXIF90m8dNsmWFku2AQMJfw1hyP5s\",\r\n        \"public_key_id\":\"hpbsfhpw\",\r\n        \"enterprise_id\": \"872557\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}v1/connections/",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"connections",
+								""
+							]
+						},
+						"description": "Copy the `target` link into a browser and log into the platform. After logging in, the redirect should handle adding the connection. Then copy the `id` of the connection and update the `cloud_connection` environment variable."
+					},
+					"response": []
+				},
+				{
+					"name": "New NFS Connection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code is OK\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"nfs_connection\", jsonData.connection.id);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"\\\\\\\\{{Your Machine Name}}\\\\{{Your NFS Folder}}\",\n    \"platform\": {\n        \"id\": \"nfs\"\n    },\n    \"auth\": {\n        \"unc\": \"\\\\\\\\{{Your Machine Name}}\\\\{{Your NFS Folder}}\"\n    }\n}"
+						},
+						"url": {
+							"raw": "{{url}}v1/connections",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"connections"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Rename Connection",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Renamed Connection\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}v1/connections/{{nfs_connection}}",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"connections",
+								"{{nfs_connection}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Connection",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code is OK\"] = responseCode.code === 200;",
+									"postman.clearEnvironmentVariable(\"nfs_connection\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/connections/{{nfs_connection}}",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"connections",
+								"{{nfs_connection}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Create Jobs",
+			"item": [
+				{
+					"name": "New Transfer Job (impersonation)",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code is OK\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"job\", jsonData.job.id);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\":\"My Impersonation Job\",\r\n  \"kind\": \"transfer\",\r\n  \"transfer\": {\r\n      \"transfer_type\": \"copy\",\r\n      \"source\": {\r\n        \"connection\": { \"id\": \"{{nfs_connection}}\" }\r\n      },\r\n      \"destination\": {\r\n        \"connection\": { \"id\": \"{{cloud_connection}}\" },\r\n        \"impersonate_by\": {\r\n            \"id\": \"123456789\",\r\n            \"name\": \"Bob Smith\",\r\n            \"email\": \"Bob.Smith@email.com\"\r\n        },\r\n        \"target\": {\r\n          \"path\": \"/MyDestination2\"\r\n        }\r\n      }\r\n  },\r\n  \"schedule\": {\r\n    \"mode\": \"manual\"\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}v1/jobs",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Transfer Job: NFS > Box",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code is OK\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"job\", jsonData.job.id);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n\t\"name\":\"NFS > Box (user_one@company.com)\",\r\n\t\"kind\": \"transfer\",\r\n\t\"category\": {\"name\": \"{category}\"},\r\n\t\"transfer\":\t{\r\n\t\t\"transfer_type\": \"copy\",\r\n\t\t\"audit_level\": \"trace\",\r\n\t\t\"empty_containers\": \"create\",\r\n\t\t\"conflict_resolution\": \"latest\",\r\n\t\t\"delete_propagation\": \"ignore_both\",\r\n\t\t\"lock_propagation\": \"ignore\",\r\n\t\t\"restricted_content\": \"convert\",\r\n\t\t\"segment_transform\": true,\r\n\t\t\"timestamps\": true,\r\n\t\t\"preserve_owners\": true,\r\n\t\t\"large_item\": \"skip\",\r\n\t\t\"filter\": {\r\n            \"source\": [{\r\n                    \"action\": \"include\",\r\n                    \"rules\": [{\r\n                            \"targets\": \"modified_on\",\r\n                            \"range\": {\r\n                                \"type\": \"day\",\r\n                                \"value\": 730\r\n                            },\r\n                            \"type\": \"filter_date\"\r\n                        }\r\n                    ],\r\n                    \"type\": \"filter_rule\"\r\n                }\r\n            ]\r\n\t\t\t},\r\n\t\t\"source\": {\r\n\t\t\t\"connection\": {\"id\": \"5dc531df34554edd96c31272262ad950\"},\r\n\t\t\t\"target\": {\"path\": \"/Desktop/Source\"}\r\n\t\t},\r\n\t\t\"destination\": {\r\n\t\t\t\"connection\": {\"id\": \"5dc531df34554edd96c31272262ad950\"},\r\n\t\t\t\"target\": {\"path\": \"/Desktop/Dest\"},\r\n\t\t\t\"impersonate_as\": {\r\n                \"id\": \"{destination_id}\"\r\n            }\r\n\t\t}\r\n\t},\r\n\t\"schedule\": {\r\n\t\t\"mode\": \"auto\",\r\n\t\t\"repeat_interval\": {\r\n    \t\t\"value\": 1800000,\r\n    \t\t\"unit\": \"ms\"\r\n\t\t}\r\n    },\r\n\t\"stop_policy\": {\r\n        \"on_success\": 3,\r\n        \"on_failure\": 6\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}v1/jobs",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "New Transfer Job: Destination Box Service Account Admin Mode",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code is OK\"] = responseCode.code === 201;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"job\", jsonData.job.id);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\":\"Transfer Job - Destination Box Service Account Admin Mode\",\r\n  \"kind\": \"transfer\",\r\n  \"transfer\": {\r\n      \"audit_level\": \"trace\",\r\n      \"transfer_type\": \"migrate\",\r\n      \"source\": {\r\n        \"connection\": { \"id\": \"{{nfs_connection}}\" }\r\n        ,\r\n        \"target\":\r\n        {\"path\":\"/L0\"}\r\n      },\r\n      \"destination\": {\r\n        \"connection\": { \"id\": \"{{cloud_connection}}\" },\r\n        \"target\": {\r\n          \"path\": \"/Bob.Smith@email.com/Test1\"\r\n        }\r\n      }\r\n  },\r\n  \"schedule\": {\r\n    \"mode\": \"manual\"\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}v1/jobs",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"jobs"
+							]
+						},
+						"description": "Migrate\nVersion test"
+					},
+					"response": []
+				},
+				{
+					"name": "New Transfer Job: Delete Policy Ignore Source",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code is OK\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"job\", jsonData.job.id);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n  \"name\":\"Copy Job Delete Policy Ignore Source\",\r\n  \"kind\": \"transfer\",\r\n  \"transfer\": {\r\n      \"audit_level\": \"trace\",\r\n      \"transfer_type\": \"copy\",\r\n      \"delete_propagation\": [\"ignore_source\"],\r\n      \"source\": {\r\n        \"connection\": { \"id\": \"{{id}}\" },\r\n        \"target\": {\r\n          \"path\": \"/Libraries/Documents\"\r\n        ,\r\n        \"target\":\r\n        {\"path\":\"/MASTER_TESTS/\"}\r\n      },\r\n      \"destination\": {\r\n        \"connection\": { \"id\": \"{{cloud_connection}}\" },\r\n        \"target\": {\r\n          \"path\": \"/Copy_IgnoreSource\"\r\n        }\r\n      }\r\n  },\r\n  \"schedule\": {\r\n    \"mode\": \"manual\"\r\n  }\r\n}}"
+						},
+						"url": {
+							"raw": "{{url}}v1/jobs",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"jobs"
+							]
+						},
+						"description": "Other options include:\n// mirror, ignore_destination, ignore_both"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Existing Jobs",
+			"item": [
+				{
+					"name": "Job Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/jobs/{{job}}?fields=all",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"jobs",
+								"{{job}}"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "all"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Job Execution History: Last Job Run",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/jobs/{{job}}/history/last?include=all",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"jobs",
+								"{{job}}",
+								"history",
+								"last"
+							],
+							"query": [
+								{
+									"key": "include",
+									"value": "all"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Job",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code is OK\"] = responseCode.code === 200;",
+									"postman.clearEnvironmentVariable(\"job\");"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/jobs/{{job}}",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"jobs",
+								"{{job}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Start Job",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Length",
+								"value": "0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/jobs/{{job}}?start=1",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"jobs",
+								"{{job}}"
+							],
+							"query": [
+								{
+									"key": "start",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Permissions Reset",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Length",
+								"value": "0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/jobs/{{job}}?reset=permissions",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"jobs",
+								"{{job}}"
+							],
+							"query": [
+								{
+									"key": "reset",
+									"value": "permissions"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Hard Reset",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Length",
+								"value": "0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/jobs/{{job}}?reset=hard",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"jobs",
+								"{{job}}"
+							],
+							"query": [
+								{
+									"key": "reset",
+									"value": "hard"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Soft Reset",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Length",
+								"value": "0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/jobs/{{job}}?reset=soft",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"jobs",
+								"{{job}}"
+							],
+							"query": [
+								{
+									"key": "reset",
+									"value": "soft"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pause Job",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Length",
+								"value": "0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/jobs/{{job}}?pause=1",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"jobs",
+								"{{job}}"
+							],
+							"query": [
+								{
+									"key": "pause",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Job Stop Policy",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Length",
+								"value": "0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"kind\": \"transfer\",\r\n    \"stop_policy\": {\r\n        \"on_success\": 1,\r\n        \"on_failure\": 3\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}v1/jobs/{{job}}",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"jobs",
+								"{{job}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit Job Schedule",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Length",
+								"value": "0"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"kind\": \"transfer\",\r\n    \"schedule\": {\r\n\t\t\"mode\": \"auto\",\r\n\t\t\"repeat_interval\": {\r\n    \t\t\"value\": 3600000,\r\n    \t\t\"unit\": \"ms\"\r\n\t\t}\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}v1/jobs/{{job}}",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"jobs",
+								"{{job}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List All Jobs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/jobs",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"jobs"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "List Jobs: Exclude Transfer Jobs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/jobs?exclude_kinds=transfer",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"jobs"
+							],
+							"query": [
+								{
+									"key": "exclude_kinds",
+									"value": "transfer"
+								}
+							]
+						},
+						"description": "Will show all jobs but exclude system"
+					},
+					"response": []
+				},
+				{
+					"name": "Job Audit History",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/jobs/{{job}}/auditing?include=all",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"jobs",
+								"{{job}}",
+								"auditing"
+							],
+							"query": [
+								{
+									"key": "include",
+									"value": "all"
+								}
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "SF289_Syncplicity_Copy",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer {{access_token}}"
+									},
+									{
+										"key": "Accept",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "{{url}}v1/jobs/4861cae91ae1490083d631a2babdcccf/auditing?include=all",
+									"host": [
+										"{{url}}v1"
+									],
+									"path": [
+										"jobs",
+										"4861cae91ae1490083d631a2babdcccf",
+										"auditing"
+									],
+									"query": [
+										{
+											"key": "include",
+											"value": "all"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8",
+									"name": "Content-Type",
+									"description": ""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 07 Dec 2016 18:58:14 GMT",
+									"name": "Date",
+									"description": ""
+								},
+								{
+									"key": "Server",
+									"value": "Kestrel",
+									"name": "Server",
+									"description": ""
+								},
+								{
+									"key": "Transfer-Encoding",
+									"value": "chunked",
+									"name": "Transfer-Encoding",
+									"description": ""
+								}
+							],
+							"cookie": [],
+							"body": "{\"status\":200,\"meta\":{\"links\":{\"self\":{\"href\":\"/v1/jobs/4861cae91ae1490083d631a2babdcccf/auditing?offset=0&limit=100&fields=all&job_ids=4861cae91ae1490083d631a2babdcccf\"}},\"offset\":0,\"limit\":100,\"fields\":[\"all\"],\"job_ids\":[\"4861cae91ae1490083d631a2babdcccf\"],\"total_count\":70},\"item\":[{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":574,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"}},\"event\":\"no_connect\",\"id\":222,\"level\":\"error\",\"message\":\"The connection is not active ('1ec6c401b3204c838aa63eb7db3c95d5'). Please edit the authentication information in order to repair the connection.\",\"recorded_on\":1481125947.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":588,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"}},\"event\":\"no_connect\",\"id\":227,\"level\":\"error\",\"message\":\"The connection is not active ('1ec6c401b3204c838aa63eb7db3c95d5'). Please edit the authentication information in order to repair the connection.\",\"recorded_on\":1481126734.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":602,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"}},\"event\":\"no_connect\",\"id\":232,\"level\":\"error\",\"message\":\"The connection is not active ('1ec6c401b3204c838aa63eb7db3c95d5'). Please edit the authentication information in order to repair the connection.\",\"recorded_on\":1481127634.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":615,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"}},\"event\":\"no_connect\",\"id\":238,\"level\":\"error\",\"message\":\"The connection is not active ('1ec6c401b3204c838aa63eb7db3c95d5'). Please edit the authentication information in order to repair the connection.\",\"recorded_on\":1481128534.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":628,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"}},\"event\":\"no_connect\",\"id\":244,\"level\":\"error\",\"message\":\"The connection is not active ('1ec6c401b3204c838aa63eb7db3c95d5'). Please edit the authentication information in order to repair the connection.\",\"recorded_on\":1481129434.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":642,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"}},\"event\":\"no_connect\",\"id\":249,\"level\":\"error\",\"message\":\"The connection is not active ('1ec6c401b3204c838aa63eb7db3c95d5'). Please edit the authentication information in order to repair the connection.\",\"recorded_on\":1481130334.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Rename Loop Issue_Box.saz\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Rename Loop Issue_Box.saz\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":254,\"level\":\"error\",\"message\":\"The value cannot be null or empty.\\r\\nParameter name: mediaType\",\"recorded_on\":1481132059.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"desktop.ini\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"desktop.ini\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":255,\"level\":\"error\",\"message\":\"The value cannot be null or empty.\\r\\nParameter name: mediaType\",\"recorded_on\":1481132059.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"BGTest_LocalToShareFile.saz\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"BGTest_LocalToShareFile.saz\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":256,\"level\":\"error\",\"message\":\"The value cannot be null or empty.\\r\\nParameter name: mediaType\",\"recorded_on\":1481132059.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Rename Loop Issue.saz\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Rename Loop Issue.saz\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":257,\"level\":\"error\",\"message\":\"The value cannot be null or empty.\\r\\nParameter name: mediaType\",\"recorded_on\":1481132060.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SS-2863\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Version Check throws a 500 error.saz\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Version Check throws a 500 error.saz\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":258,\"level\":\"error\",\"message\":\"The value cannot be null or empty.\\r\\nParameter name: mediaType\",\"recorded_on\":1481132065.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Postman Collections\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Apricot%20Test%20Run_Manager.postman_collection.json\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Apricot%20Test%20Run_Manager.postman_collection.json\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":263,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481133506.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SS-2506\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Log.Job_4.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Log.Job_4.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":264,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481133959.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SS-2568\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Synchronize My Computer-SYNC to IBM Connection Manager-LB SYNC 1-Failures.csv\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Synchronize My Computer-SYNC to IBM Connection Manager-LB SYNC 1-Failures.csv\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":265,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481133961.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SYNC Folder with Content 2\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST 5.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST 5.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":266,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481133972.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TAXONOMY SYNC\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SYNC3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST 4.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST 4.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":267,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481133990.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_FOLDERS with Content\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"FOLDER B\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"MCM Menu 22222.docx\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"MCM Menu 22222.docx\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":268,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481134066.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SYNC Folder with Content 3\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST 5.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST 5.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":269,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481134139.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SS-2536\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Copy My Computer-BlockGroup Test 2 to Citrix ShareFile-BlockGroup Test 2-Failures.csv\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Copy My Computer-BlockGroup Test 2 to Citrix ShareFile-BlockGroup Test 2-Failures.csv\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":270,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481134198.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SYNC Folder with Content 3\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST 2.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST 2.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":271,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481134204.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SYNC Folder with Content 2\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST 1.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST 1.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":272,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481134252.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SYNC Folder with Content 3\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Publish_This File Should be removed from destination.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Publish_This File Should be removed from destination.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":273,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481134253.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TAXONOMY SYNC\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SYNC3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST3.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST3.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":274,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481134267.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SS-2773\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SS2773_Log_ErrorNFS_ProvideCredentials.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SS2773_Log_ErrorNFS_ProvideCredentials.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":275,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481134290.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SYNC Folder with Content 2\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST 2.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST 2.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":276,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481134327.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SS-3062\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SS-3062_AgentJobError.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SS-3062_AgentJobError.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":277,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481134333.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SYNC Folder with Content 3\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST3.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST3.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":279,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481134433.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SS-2536\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Log.Job_7.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Log.Job_7.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":280,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481134441.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SS-3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SS3154_GoogleDrive_RateLimitedWarnings.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SS3154_GoogleDrive_RateLimitedWarnings.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":281,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481134467.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SS-2507\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Log.Job_6.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Log.Job_6.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":282,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481134503.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"ThisFile_has_backSlashes_inthefilename\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"ThisFile_has_backSlashes_inthefilename\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":283,\"level\":\"error\",\"message\":\"The value cannot be null or empty.\\r\\nParameter name: mediaType\",\"recorded_on\":1481134503.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TAXONOMY SYNC\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SYNC3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST 1.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST 1.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":284,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481134598.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Postman Collections\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"ApricotTestRun_Manager.postman_collection.json\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"ApricotTestRun_Manager.postman_collection.json\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":285,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481134638.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SYNC Folder with Content 2\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Publish_This File Should be removed from destination.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Publish_This File Should be removed from destination.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":286,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481134650.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SYNC Folder with Content 2\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST3.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST3.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":287,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481134659.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SS-2536\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Log.Job_8.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Log.Job_8.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":288,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481134736.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SYNC Folder with Content 3\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST 1.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST 1.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":289,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481134747.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SS-2536\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Copy My Computer-BlockGroup Test 3 to Box-BlockGroup Test 3-Failures.csv\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Copy My Computer-BlockGroup Test 3 to Box-BlockGroup Test 3-Failures.csv\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":290,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481134763.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TAXONOMY SYNC\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SYNC3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST 2.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST 2.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":291,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481134870.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TAXONOMY SYNC\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SYNC3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST 5.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST 5.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":292,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481134889.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TAXONOMY SYNC\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SYNC3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Publish_This File Should be removed from destination.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Publish_This File Should be removed from destination.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":293,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481134956.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SYNC Folder with Content 2\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST 4.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST 4.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":294,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481135054.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_FOLDERS with Content\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"FOLDER B\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"MCM Menu 22222.docx\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"MCM Menu 22222.docx\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":295,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481135464.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_FOLDERS with Content\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"FOLDER B\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Motor City Mile DYC Lunch Menu 2016 22222.pdf\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Motor City Mile DYC Lunch Menu 2016 22222.pdf\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":296,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481135594.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"item635138900511341805.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"item635138900511341805.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":297,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481135896.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\".Number & of user accounts at source-1772.csv\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\".Number & of user accounts at source-1772.csv\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":298,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481135932.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"m-t___.xlsx\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"m-t___.xlsx\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":299,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481135980.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Test word doc versioning & sync.docx\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Test word doc versioning & sync.docx\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":300,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481136014.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Office Report_that has_several forward_slashes.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Office Report_that has_several forward_slashes.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":301,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481136029.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Office 365-Steve.csv\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Office 365-Steve.csv\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":302,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481136033.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\".txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\".txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":303,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481136100.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"nocontent&stuff.docx\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"nocontent&stuff.docx\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":304,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481136143.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"feature_activate.png\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"feature_activate.png\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":305,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481136183.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"UserManual.pdf\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"UserManual.pdf\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":306,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481136240.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\".url.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\".url.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":307,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481136262.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"gateway-ug.pdf\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"gateway-ug.pdf\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":308,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481136300.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Aug!2016_Reports.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Aug!2016_Reports.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":309,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481136355.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SS3154_Subfolder_2\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"feature_activate.png\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"feature_activate.png\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":310,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481136395.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SS3154_Subfolder_2\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Number & of user accounts at source-1772.csv\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Number & of user accounts at source-1772.csv\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":311,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481136417.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"startup1.png\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"startup1.png\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":312,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481136426.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"June-report~andstuff.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"June-report~andstuff.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":313,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481136435.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SS3154_Subfolder_2\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\".Number &of user accounts =at source-177.csv\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\".Number &of user accounts =at source-177.csv\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":314,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481136466.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Box_SkySync.pdf\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Box_SkySync.pdf\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":315,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481136471.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SS3154_Subfolder_2\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"item635138900511341805.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"item635138900511341805.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":316,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481136581.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SS3154_Subfolder_2\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"June-report~andstuff.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"June-report~andstuff.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":317,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481136737.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SS3154_Subfolder_2\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Reports.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Reports.txt\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":318,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481136789.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Number of user accounts at (source).csv\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Number of user accounts at (source).csv\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":323,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481136831.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Sperry Invoice2.jpg\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Sperry Invoice2.jpg\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":324,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481136966.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SS3154_Subfolder_2\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Box_SkySync.pdf\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Box_SkySync.pdf\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":325,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481136967.0},{\"job_id\":\"4861cae91ae1490083d631a2babdcccf\",\"execution_id\":655,\"source\":{\"connection\":{\"id\":\"5dc531df34554edd96c31272262ad950\",\"name\":\"My Computer\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"parent\":{\"root\":true,\"name\":\"Libraries\",\"platform_type\":{\"type\":\"container\"},\"type\":\"container\"},\"name\":\"Documents\",\"platform_type\":{\"id\":\"l\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"LB_Bundle93_GoogleDrive\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"TEST_SS3154\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"COPY3_NFS\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\"SS3154_Subfolder_2\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\".xlsx\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"destination\":{\"connection\":{\"id\":\"1ec6c401b3204c838aa63eb7db3c95d5\",\"name\":\"Syncplicity\",\"type\":\"connection\"},\"target\":{\"item\":{\"parent\":{\"root\":true,\"id\":\"5827089!277174872\",\"name\":\"Bundle93_COPY\",\"platform_type\":{\"id\":\"d\",\"type\":\"container\"},\"type\":\"container\"},\"name\":\".xlsx\",\"platform_type\":{\"id\":\"f\",\"type\":\"item\"},\"type\":\"item\"}}},\"from_source\":true,\"to_destination\":true,\"event\":\"fail\",\"id\":326,\"level\":\"error\",\"message\":\"Response status code does not indicate success: 504 (GATEWAY_TIMEOUT).\",\"recorded_on\":1481137066.0}]}"
+						}
+					]
+				},
+				{
+					"name": "Job Execution History: All",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/jobs/{{job}}/history/?include=all",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"jobs",
+								"{{job}}",
+								"history",
+								""
+							],
+							"query": [
+								{
+									"key": "include",
+									"value": "all"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Access Control",
+			"item": [
+				{
+					"name": "List All Roles",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/roles?include=all",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"roles"
+							],
+							"query": [
+								{
+									"key": "include",
+									"value": "all"
+								}
+							]
+						},
+						"description": "Roles define a subset of permissions    \nFor example, a role named 'Job Administrators' might be created that includes the List Jobs, Manage Jobs, and Control Jobs permissions"
+					},
+					"response": []
+				},
+				{
+					"name": "List All Permissions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/permissions",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"permissions"
+							]
+						},
+						"description": "Permissions define the type of data and the level of access   \nFor example, the List Jobs permission allows a user to view a list of jobs that are defined in the group or groups the user is included"
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Role",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code is OK\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"role\", jsonData.role.id);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Super Admin\",\n    \"permissions\": [\n        \"bbd25a404cdc4e01baabd0b79394cbd8\",\n        \"d9507ec76bf7414aa8a74a0c88c32a48\",\n        \"3560a25976504967bcd48a7e668a07a8\",\n        \"47c6cd5954f041df8d79e1972cc1ce3b\",\n        \"294eee9539354739b194da1a879bc163\",\n        \"0a92ab0e02414a51b03497490df76ada\",\n        \"989d1df3d6af47afadb0a74e42efc92c\",\n        \"86b29346112b48528f8e4aeed0137262\",\n        \"ffee260e389a42f7b23ce75b46b79e2e\",\n        \"5e97f402d6b14a599eeba998d5d63044\",\n        \"64ce9e42a7ac402086bf229c346bc533\",\n        \"1f0d640960f949bda50f1eed7a7fa9ba\",\n        \"915fb2c972a3479ab3272b62507b7300\",\n        \"e7e4f17053fa41489dfb026d18d6bc40\",\n        \"5a16a060c35d467882c007979926bdfe\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{url}}v1/roles",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"roles"
+							]
+						},
+						"description": "Create new role using permission id's  \n  \nGroups and group memberships define the data to which users have access. For example, if an NFS connection is created by a user in Group A, a user assigned to Group B will not be able to access that connection. Groups only have access to data created by members of this group and its child groups. A group will not have access to data created by its parent or peer groups.  \n\nThe term tenant is also used in relation to groups. A tenant is any group created without a parent. Otherwise known as a root group. A user is considered a tenant administrator when they are assigned to a root tenant group.  \n\nPermissions define the type of data and the level of access. For example, the List Jobs permission allows a user to view a list of jobs that are defined in the group or groups the user is included.  \n\nRoles define a subset of permissions. For example, a role named 'Job Administrators' might be created that includes the List Jobs, Manage Jobs, and Control Jobs permissions.\n\n\"id\": \"47c6cd5954f041df8d79e1972cc1ce3b\" = \"name\": \"List Connections\"  \n  \n\"id\": \"294eee9539354739b194da1a879bc163\" = \"name\": \"Manage Connections\"   \n\"id\": \"0a92ab0e02414a51b03497490df76ada\" = \"name\": \"Read Content\"   \n\"id\": \"989d1df3d6af47afadb0a74e42efc92c\" = \"name\": \"Write/Delete Content\"   \n\"id\": \"bbd25a404cdc4e01baabd0b79394cbd8\" = \"name\": \"List Jobs\"   \n\"id\": \"d9507ec76bf7414aa8a74a0c88c32a48\" = \"name\": \"Manage Jobs\"   \n\"id\": \"3560a25976504967bcd48a7e668a07a8\" = \"name\": \"Control Jobs (i.e. Start/Stop/Pause)\"   \n\"id\": \"86b29346112b48528f8e4aeed0137262\" = \"name\": \"Manage Templates\"   \n\"id\": \"ffee260e389a42f7b23ce75b46b79e2e\" = \"name\": \"List Remote Sites\"   \n\"id\": \"5e97f402d6b14a599eeba998d5d63044\" = \"name\": \"Manage Remote Sites\"   \n\"id\": \"64ce9e42a7ac402086bf229c346bc533\" = \"name\": \"Invoke Remote Sites\"   \n\"id\": \"1f0d640960f949bda50f1eed7a7fa9ba\" = \"name\": \"Establish Remote Sites\"   \n\"id\": \"915fb2c972a3479ab3272b62507b7300\" = \"name\": \"List Users and Groups\"   \n\"id\": \"e7e4f17053fa41489dfb026d18d6bc40\" = \"name\": \"Manage Users and Groups\"   \n\"id\": \"5a16a060c35d467882c007979926bdfe\" = \"name\": \"Manage Access Rights\""
+					},
+					"response": []
+				},
+				{
+					"name": "Create a new Role - Limited User",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code is OK\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"role\", jsonData.role.id);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Sub-Admin\",\n    \"_comment\": \"This user has the following permissions: \\nConnections: List,Read,Write \\nJobs: List,Manage,Control \\nSecurity: List\",\n    \"permissions\": [\n        \"bbd25a404cdc4e01baabd0b79394cbd8\",\n        \"d9507ec76bf7414aa8a74a0c88c32a48\",\n        \"3560a25976504967bcd48a7e668a07a8\",\n        \"47c6cd5954f041df8d79e1972cc1ce3b\",\n        \"0a92ab0e02414a51b03497490df76ada\",\n        \"989d1df3d6af47afadb0a74e42efc92c\",\n        \"915fb2c972a3479ab3272b62507b7300\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{url}}v1/roles",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"roles"
+							]
+						},
+						"description": "Create new role using permission id's  \n  \nGroups and group memberships define the data to which users have access. For example, if an NFS connection is created by a user in Group A, a user assigned to Group B will not be able to access that connection. Groups only have access to data created by members of this group and its child groups. A group will not have access to data created by its parent or peer groups.  \n\nThe term tenant is also used in relation to groups. A tenant is any group created without a parent. Otherwise known as a root group. A user is considered a tenant administrator when they are assigned to a root tenant group.  \n\nPermissions define the type of data and the level of access. For example, the List Jobs permission allows a user to view a list of jobs that are defined in the group or groups the user is included.  \n\nRoles define a subset of permissions. For example, a role named 'Job Administrators' might be created that includes the List Jobs, Manage Jobs, and Control Jobs permissions.\n\n\"id\": \"47c6cd5954f041df8d79e1972cc1ce3b\" = \"name\": \"List Connections\"  \n  \n\"id\": \"294eee9539354739b194da1a879bc163\" = \"name\": \"Manage Connections\"   \n\"id\": \"0a92ab0e02414a51b03497490df76ada\" = \"name\": \"Read Content\"   \n\"id\": \"989d1df3d6af47afadb0a74e42efc92c\" = \"name\": \"Write/Delete Content\"   \n\"id\": \"bbd25a404cdc4e01baabd0b79394cbd8\" = \"name\": \"List Jobs\"   \n\"id\": \"d9507ec76bf7414aa8a74a0c88c32a48\" = \"name\": \"Manage Jobs\"   \n\"id\": \"3560a25976504967bcd48a7e668a07a8\" = \"name\": \"Control Jobs (i.e. Start/Stop/Pause)\"   \n\"id\": \"86b29346112b48528f8e4aeed0137262\" = \"name\": \"Manage Templates\"   \n\"id\": \"ffee260e389a42f7b23ce75b46b79e2e\" = \"name\": \"List Remote Sites\"   \n\"id\": \"5e97f402d6b14a599eeba998d5d63044\" = \"name\": \"Manage Remote Sites\"   \n\"id\": \"64ce9e42a7ac402086bf229c346bc533\" = \"name\": \"Invoke Remote Sites\"   \n\"id\": \"1f0d640960f949bda50f1eed7a7fa9ba\" = \"name\": \"Establish Remote Sites\"   \n\"id\": \"915fb2c972a3479ab3272b62507b7300\" = \"name\": \"List Users and Groups\"   \n\"id\": \"e7e4f17053fa41489dfb026d18d6bc40\" = \"name\": \"Manage Users and Groups\"   \n\"id\": \"5a16a060c35d467882c007979926bdfe\" = \"name\": \"Manage Access Rights\""
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Role | Remote Site Permissions Only",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code is OK\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"role\", jsonData.role.id);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Remote Site User\",\n    \"permissions\": [\n      \"ffee260e389a42f7b23ce75b46b79e2e\",\n      \"5e97f402d6b14a599eeba998d5d63044\",\n      \"64ce9e42a7ac402086bf229c346bc533\",\n      \"1f0d640960f949bda50f1eed7a7fa9ba\"\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{url}}v1/roles",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"roles"
+							]
+						},
+						"description": "Create new role using permission id's  \n  \nGroups and group memberships define the data to which users have access. For example, if an NFS connection is created by a user in Group A, a user assigned to Group B will not be able to access that connection. Groups only have access to data created by members of this group and its child groups. A group will not have access to data created by its parent or peer groups.  \n\nThe term tenant is also used in relation to groups. A tenant is any group created without a parent. Otherwise known as a root group. A user is considered a tenant administrator when they are assigned to a root tenant group.  \n\nPermissions define the type of data and the level of access. For example, the List Jobs permission allows a user to view a list of jobs that are defined in the group or groups the user is included.  \n\nRoles define a subset of permissions. For example, a role named 'Job Administrators' might be created that includes the List Jobs, Manage Jobs, and Control Jobs permissions.\n\n\"id\": \"47c6cd5954f041df8d79e1972cc1ce3b\" = \"name\": \"List Connections\"  \n  \n\"id\": \"294eee9539354739b194da1a879bc163\" = \"name\": \"Manage Connections\"   \n\"id\": \"0a92ab0e02414a51b03497490df76ada\" = \"name\": \"Read Content\"   \n\"id\": \"989d1df3d6af47afadb0a74e42efc92c\" = \"name\": \"Write/Delete Content\"   \n\"id\": \"bbd25a404cdc4e01baabd0b79394cbd8\" = \"name\": \"List Jobs\"   \n\"id\": \"d9507ec76bf7414aa8a74a0c88c32a48\" = \"name\": \"Manage Jobs\"   \n\"id\": \"3560a25976504967bcd48a7e668a07a8\" = \"name\": \"Control Jobs (i.e. Start/Stop/Pause)\"   \n\"id\": \"86b29346112b48528f8e4aeed0137262\" = \"name\": \"Manage Templates\"   \n\"id\": \"ffee260e389a42f7b23ce75b46b79e2e\" = \"name\": \"List Remote Sites\"   \n\"id\": \"5e97f402d6b14a599eeba998d5d63044\" = \"name\": \"Manage Remote Sites\"   \n\"id\": \"64ce9e42a7ac402086bf229c346bc533\" = \"name\": \"Invoke Remote Sites\"   \n\"id\": \"1f0d640960f949bda50f1eed7a7fa9ba\" = \"name\": \"Establish Remote Sites\"   \n\"id\": \"915fb2c972a3479ab3272b62507b7300\" = \"name\": \"List Users and Groups\"   \n\"id\": \"e7e4f17053fa41489dfb026d18d6bc40\" = \"name\": \"Manage Users and Groups\"   \n\"id\": \"5a16a060c35d467882c007979926bdfe\" = \"name\": \"Manage Access Rights\""
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code is OK\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"tenant1_group\", jsonData.owner.id);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Remote Site Group\"\n}"
+						},
+						"url": {
+							"raw": "{{url}}v1/groups",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"groups"
+							]
+						},
+						"description": "Groups and group memberships define the data to which users have access. For example, if an NFS connection is created by a user in Group A, a user assigned to Group B will not be able to access that connection. Groups only have access to data created by members of this group and its child groups. A group will not have access to data created by its parent or peer groups.    \r\n\r\nThe term tenant is also used in relation to groups. A tenant is any group created without a parent. Otherwise known as a root group. A user is considered a tenant administrator when they are assigned to a root tenant group."
+					},
+					"response": []
+				},
+				{
+					"name": "Create New Child Group",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code is OK\"] = responseCode.code === 200;",
+									"",
+									"var jsonData = JSON.parse(responseBody);",
+									"postman.setEnvironmentVariable(\"tenant1_group\", jsonData.owner.id);"
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Tenant 1\",\r\n    \"parent\": {\r\n        \"id\": \"[parent-group-id]\"\r\n    }\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}v1/groups",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"groups"
+							]
+						},
+						"description": "Groups and group memberships define the data to which users have access. For example, if an NFS connection is created by a user in Group A, a user assigned to Group B will not be able to access that connection. Groups only have access to data created by members of this group and its child groups. A group will not have access to data created by its parent or peer groups.    \r\n\r\nThe term tenant is also used in relation to groups. A tenant is any group created without a parent. Otherwise known as a root group. A user is considered a tenant administrator when they are assigned to a root tenant group."
+					},
+					"response": []
+				},
+				{
+					"name": "Create New User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"login\": \"testuser\",\r\n    \"password\": \"Comple%2016!\",\r\n    \"name\": \"displayName\",\r\n    \"roles\": [ \r\n      {\"id\": \"{{role}}\"}\r\n    ],\r\n    \"groups\": [\r\n      {\"id\": \"{{group}}}}\"}\r\n    ]\r\n}\r\n"
+						},
+						"url": {
+							"raw": "{{url}}v1/users",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"users"
+							]
+						},
+						"description": "IMPORTANT: PASSWORD MUST MEET OUR COMPLEX REQUIREMENTS    \r\n\r\n__   \r\n\r\n\r\n\r\nGroups and group memberships define the data to which users have access. For example, if an NFS connection is created by a user in Group A, a user assigned to Group B will not be able to access that connection. Groups only have access to data created by members of this group and its child groups. A group will not have access to data created by its parent or peer groups.  \r\n\r\nThe term tenant is also used in relation to groups. A tenant is any group created without a parent. Otherwise known as a root group. A user is considered a tenant administrator when they are assigned to a root tenant group.  \r\n\r\nPermissions define the type of data and the level of access. For example, the List Jobs permission allows a user to view a list of jobs that are defined in the group or groups the user is included.  \r\n\r\nRoles define a subset of permissions. For example, a role named 'Job Administrators' might be created that includes the List Jobs, Manage Jobs, and Control Jobs permissions."
+					},
+					"response": []
+				},
+				{
+					"name": "Show Current User (Me) Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/users/me?fields=all",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"users",
+								"me"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "all"
+								}
+							]
+						},
+						"description": "Groups and group memberships define the data to which users have access. For example, if an NFS connection is created by a user in Group A, a user assigned to Group B will not be able to access that connection. Groups only have access to data created by members of this group and its child groups. A group will not have access to data created by its parent or peer groups.   \r\n\r\nThe term tenant is also used in relation to groups. A tenant is any group created without a parent. Otherwise known as a root group. A user is considered a tenant administrator when they are assigned to a root tenant group.  \r\n\r\nPermissions define the type of data and the level of access. For example, the List Jobs permission allows a user to view a list of jobs that are defined in the group or groups the user is included.  \r\n\r\nRoles define a subset of permissions. For example, a role named 'Job Administrators' might be created that includes the List Jobs, Manage Jobs, and Control Jobs permissions."
+					},
+					"response": []
+				},
+				{
+					"name": "List My Permissions",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/users/me/permissions",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"users",
+								"me",
+								"permissions"
+							]
+						},
+						"description": "Lists permissions for the current user"
+					},
+					"response": []
+				},
+				{
+					"name": "List All Groups",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/groups?include=all&root=1",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"groups"
+							],
+							"query": [
+								{
+									"key": "include",
+									"value": "all"
+								},
+								{
+									"key": "root",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Groups and group memberships define the data to which users have access. For example, if an NFS connection is created by a user in Group A, a user assigned to Group B will not be able to access that connection. Groups only have access to data created by members of this group and its child groups. A group will not have access to data created by its parent or peer groups.    \r\n\r\nThe term tenant is also used in relation to groups. A tenant is any group created without a parent. Otherwise known as a root group. A user is considered a tenant administrator when they are assigned to a root tenant group."
+					},
+					"response": []
+				},
+				{
+					"name": "List All Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/users",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Role Details",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/roles/{{role}}?include=all",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"roles",
+								"{{role}}"
+							],
+							"query": [
+								{
+									"key": "include",
+									"value": "all"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Reports",
+			"item": [
+				{
+					"name": "Reports | List all job category ID's",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/jobs?fields=category",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"jobs"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "category"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reports | List All ",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/reports",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"reports"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Analyzer Reports | Create New Report for Simulation Mode",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4867b43f-5273-4996-b9a9-33e7988d9d19",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code is OK\"] = responseCode.code === 200;",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"name\": \"Simulation Jobs\",\r\n \"created_by\": \"Lindsey Byers\",\r\n \"description\": \"This is my Analyzer report\",\r\n   \"parameters\": {\r\n     \"job_category_id\": 2,\r\n     \"simulation_mode\": true\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}v1/reports",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"reports"
+							]
+						},
+						"description": "To create a new report based on a category of jobs, you first must define the category. This is done by adding the category to the job's json; outside the transfer block (i.e. with the schedule). \n\nFor Simulation Jobs & Category, ensure your job is set to include simulation_mode:true in the transfer block.\n\n        },\n        \"simulation_mode\": true\n    },\n    \"type\": \"transfer\",\n    \"schedule\": {\n        \"mode\": \"manual\"\n    },\n    \"category\": {\n      \"id\": 8\n    }\n}\n    \nWhen you review your job details, the job_category_id will be available"
+					},
+					"response": []
+				},
+				{
+					"name": "Reports | Get Transfer Items for Report by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/reports/{{report_id}}/items",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"reports",
+								"{{report_id}}",
+								"items"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Categories | List All Job Error Categories",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/transfers/categories",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"transfers",
+								"categories"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Job Audit History | Show All Errors, All Jobs",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/transfers/auditing?level=error&?include=all",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"transfers",
+								"auditing"
+							],
+							"query": [
+								{
+									"key": "level",
+									"value": "error"
+								},
+								{
+									"key": "?include",
+									"value": "all"
+								}
+							]
+						},
+						"description": "Show all errors for content that did not transfer for all jobs"
+					},
+					"response": []
+				},
+				{
+					"name": "Reports | Create New Report Default Jobs ONLY",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4867b43f-5273-4996-b9a9-33e7988d9d19",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code is OK\"] = responseCode.code === 200;",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"name\": \"Report | Default Jobs\",\r\n \"created_by\": \"Lindsey Byers\",\r\n \"description\": \"This is my report\",\r\n   \"parameters\": {\r\n     \"job_category_id\": -1\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}v1/reports",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"reports"
+							]
+						},
+						"description": "To create a new report based on a category of jobs, you first must define the category. This is done by adding the category to the job's json; outside the transfer block (i.e. with the schedule)   \n\n    },\n    \"schedule\": {\n        \"mode\": \"manual\"\n    },\n    \"stop_policy\": {\n        \"on_success\": 2\n    },\n    \"category\": {\n      \"name\": \"Test Category\"\n    }\n    \nWhen you review your job details, the job_category_id will be available"
+					},
+					"response": []
+				},
+				{
+					"name": "Reports | Get current job's category ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/jobs/{{job}}?fields=category",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"jobs",
+								"{{job}}"
+							],
+							"query": [
+								{
+									"key": "fields",
+									"value": "category"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reports | Get transfer stats for Report by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/reports/{{report_id}}/stats",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"reports",
+								"{{report_id}}",
+								"stats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reports | Get Report by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{url}}v1/reports/{{report_id}}?include=all",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"reports",
+								"{{report_id}}"
+							],
+							"query": [
+								{
+									"key": "include",
+									"value": "all"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Reports | Create New Report",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "4867b43f-5273-4996-b9a9-33e7988d9d19",
+								"type": "text/javascript",
+								"exec": [
+									"tests[\"response code is OK\"] = responseCode.code === 200;",
+									"",
+									""
+								]
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{access_token}}"
+							},
+							{
+								"key": "Accept",
+								"value": "application/json"
+							},
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n \"name\": \"Report Roll-Up Test\",\r\n \"created_by\": \"Tyiler George\",\r\n \"description\": \"Test report\",\r\n   \"parameters\": {\r\n     \"job_category_id\": 2\r\n  }\r\n}"
+						},
+						"url": {
+							"raw": "{{url}}v1/reports",
+							"host": [
+								"{{url}}v1"
+							],
+							"path": [
+								"reports"
+							]
+						},
+						"description": "To create a new report based on a category of jobs, you first must define the category. This is done by adding the category to the job's json; outside the transfer block (i.e. with the schedule)   \n\n    },\n    \"schedule\": {\n        \"mode\": \"manual\"\n    },\n    \"stop_policy\": {\n        \"on_success\": 2\n    },\n    \"category\": {\n      \"name\": \"Test Category\"\n    }\n    \nWhen you review your job details, the job_category_id will be available"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}

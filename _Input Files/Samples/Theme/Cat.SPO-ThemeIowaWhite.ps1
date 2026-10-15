@@ -1,0 +1,24 @@
+$themePalette = @{
+  "themePrimary" = "#ffcd00";
+  "themeLighterAlt" = "#fffdf5";
+  "themeLighter" = "#fff7d6";
+  "themeLight" = "#fff0b3";
+  "themeTertiary" = "#ffe066";
+  "themeSecondary" = "#ffd21f";
+  "themeDarkAlt" = "#e6b800";
+  "themeDark" = "#c29b00";
+  "themeDarker" = "#8f7200";
+  "neutralLighterAlt" = "#f3e9eb";
+  "neutralLighter" = "#efe6e8";
+  "neutralLight" = "#e5dcde";
+  "neutralQuaternaryAlt" = "#d6cdcf";
+  "neutralQuaternary" = "#ccc4c5";
+  "neutralTertiaryAlt" = "#c4bcbe";
+  "neutralTertiary" = "#595959";
+  "neutralSecondary" = "#373737";
+  "neutralPrimaryAlt" = "#2f2f2f";
+  "neutralPrimary" = "#000000";
+  "neutralDark" = "#151515";
+  "black" = "#0b0b0b";
+  "white" = "#fbf1f3"
+}

@@ -1,0 +1,9 @@
+﻿siteTitle,siteURL,listName,listPath
+Classic Document Library,https://nrpdev2.sharepoint.com/sites/migrationtestclassicsite,Documents,Shared Documents
+Classic Custom List,https://nrpdev2.sharepoint.com/sites/migrationtestclassicsite,Test Custom List New01,testcustomNew01
+Modern Document Library,https://nrpdev2.sharepoint.com/sites/MigrationTestModernTeam,Documents,Shared Documents
+Modern Custom List,https://nrpdev2.sharepoint.com/sites/MigrationTestModernTeam,Test Custom List New01,testcustomNew01
+Zero Item Library,https://nrpdev2.sharepoint.com/sites/MigrationTestModernTeam,Test Empty Document Library,testemptylibrary
+Zero Item List,https://nrpdev2.sharepoint.com/sites/MigrationTestModernTeam,Test Empty Custom List,testemptylist
+Invalid Site,https://nrpdev2.sharepoint.com/sites/broken,Test Broken site,brokensite
+Missing List,https://nrpdev2.sharepoint.com/sites/MigrationTestModernTeam,Missing List,missinglist

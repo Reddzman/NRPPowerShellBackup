@@ -1,0 +1,4 @@
+﻿siteURL,listName,listTemplate,listURL,contentType,defaultContentType,hidden,enableContentTypes,onQuicklaunch,forceCheckout,listExperience,enableAttachments,enableFolderCreation,enableVersions,enableMinorVersions,majorVersions,minorVersions,enableModeration
+https://nrpdev2.sharepoint.com/sites/AustinEnergyPIRES,Test Library 5,DocumentLibrary,TestLib5,AustinEnergyPIRESBaseDocument,true,false,true,true,false,Auto,false,false,true,false,100,0,false
+https://nrpdev2.sharepoint.com/sites/AustinEnergyPIRES,Test Library 6,DocumentLibrary,TestLib6,AustinEnergyPIRESBaseDocument,true,false,true,true,false,Auto,false,false,true,false,100,0,false
+https://nrpdev2.sharepoint.com/sites/AustinEnergyPIRES,Test Library 7,DocumentLibrary,TestLib7,AustinEnergyPIRESBaseDocument,true,false,true,true,false,Auto,false,false,true,false,100,0,false

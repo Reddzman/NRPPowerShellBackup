@@ -1,0 +1,31 @@
+{  
+	"name":"{group_map_name}",
+	"source":{  
+	   "connection":{  
+		  "id":"66a56d049e77420095094606be91d119"
+		  }
+	},
+	"destination":{  
+	   "connection":{  
+		  "id":"{destination_Connection_id}" 
+		  }
+	},
+	"map_by":{  
+	   "id":true,
+	   "email":true,
+	   "fuzzy":true,
+	   "external_passthrough":false
+	},
+	"exceptions": {
+        "text": {
+            "connection": {
+                "id": "66a56d049e77420095094606be91d119"
+            },
+            "target": {
+                "path": "/Cat.SkySync-BoxGroupMapping-client.csv"
+            }
+        }
+    },
+	"unmapped_policy":"warn",
+	"type": "group_map"
+ }

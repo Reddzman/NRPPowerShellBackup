@@ -1,0 +1,7 @@
+﻿sourceType,googleDriveAccount,sourceFilePath,destinationURL,migrationType,documentLibrary,subFolder,createDestFolders,Notes
+Google,gdriveacct@contoso.com,gdriveacct@contoso.com,https://contoso.sharepoint.com/sites/FileShareMigrations,FULL,ShareGate Files,,FALSE,This example copies an entire G Drive to a SP Document Library
+Google,gdriveacct@contoso.com,gdriveacct@contoso.com/Subfolder,https://contoso.sharepoint.com/sites/FileShareMigrations,FULL,Migration Files,MigratedFromGoogle,TRUE,This example copies a subfolder in G Drive to a SP Document Library
+Google,gdriveacct@contoso.com,gdriveacct@contoso.com,https://contoso-my.sharepoint.com/personal/michelle_contoso_com,FULL,Documents,,FALSE,This example copies an entire G Drive to a users OneDrive
+FileShare,,C:\Temp\migrate\,https://contoso.sharepoint.com/sites/FileShareMigrations,Incremental,File System Files,SubFolder,TRUE,This example copies local files to a subfolder in a Document Library
+FileShare,,C:\Temp\migrate\,https://contoso-my.sharepoint.com/personal/neilwilgus_contoso_onmicrosoft_com/,FULL,Documents,Folder1\SubFolder1\SubFolder2,TRUE,This example copies local files to a users OneDrive account
+FileShare,,C:\Temp\migrate\,https://contoso.sharepoint.com/sites/FileShareMigrations,Incremental,Other Files,,FALSE,This example copies local files to the root of a Document Library

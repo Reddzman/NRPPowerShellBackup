@@ -1,0 +1,5 @@
+﻿Site name,URL,Teams,Channel sites,Storage used (GB),Primary admin,Hub,Template,Last activity (UTC),Date created,Created by,Storage limit (GB),Storage used (%),Microsoft 365 group,Files viewed or edited,Page views,Page visits,Files,Sensitivity,External sharing,Segments
+All Company,https://nrpdev2.sharepoint.com/sites/allcompany,FALSE,,0,,,Team site,,10/15/2020 12:42,All Company Owners,25600,0,TRUE,0,0,0,15,,On,
+Configuration Testing Site 1,https://nrpdev2.sharepoint.com/teams/ConfigTest-Site1,FALSE,,0.07,,,Team site,3/28/2024 17:00,11/29/2022 9:53,Configuration Testing Site 1 Owners,25600,0,TRUE,0,21,9,64,,On,
+Configuration Testing Site 6,https://nrpdev2.sharepoint.com/sites/ConfigTest-Site6,FALSE,,0,Nick Patterson,,Communication site,,11/29/2022 10:20,Nick Patterson,25600,0,FALSE,0,0,0,29,,Off,
+Migration Test Classic Site Structure,https://nrpdev2.sharepoint.com/sites/migrationtestclassicsite,FALSE,,0.1,Nick Patterson,,Team site (classic experience),2/7/2023 16:00,1/11/2021 9:58,Nick Patterson,25600,0,FALSE,0,0,0,84,,On,

@@ -1,0 +1,15 @@
+﻿siteTitle,siteURL,listTitle,listPath,enableModeration,enableVersioning,enableMinorVersions,forceCheckOut,majorVersions,MinorVersions,draftVersionVisibility
+Documents Library - Disable Versioning,https://nrpdev2.sharepoint.com/teams/ConfigTest-Site1,Documents,Shared Documents,false,false,false,false,0,0,None
+Documents Library - Disable Minor Versioning,https://nrpdev2.sharepoint.com/teams/ConfigTest-Site2,Documents,Shared Documents,false,TRUE,FALSE,FALSE,500,0,None
+Documents Library - Force Check Out,https://nrpdev2.sharepoint.com/sites/ConfigTest-Site3,Documents,Shared Documents,false,True,False,True,500,0,None
+Documents Library - Enable Minor versions,https://nrpdev2.sharepoint.com/sites/ConfigTest-Site4,Documents,Shared Documents,false,true,true,false,500,50,None
+Documents Library - Configure Draft Security,https://nrpdev2.sharepoint.com/teams/ConfigTest-Site5,Documents,Shared Documents,false,true,true,false,500,50,Approver
+Documents Library - Configure Content Approval,https://nrpdev2.sharepoint.com/sites/ConfigTest-Site6,Documents,Shared Documents,true,true,true,false,500,50,Author
+Progress tracker list - Disable Versioning,https://nrpdev2.sharepoint.com/teams/ConfigTest-Site1,Progress tracker list,Progress tracker list,false,false,false,false,0,0,None
+Inventory list - Disable Minor Versioning,https://nrpdev2.sharepoint.com/teams/ConfigTest-Site2,Inventory list,Inventory list,false,TRUE,false,false,500,0,None
+Events - Enable Minor versions,https://nrpdev2.sharepoint.com/sites/ConfigTest-Site4,Events,Events,true,true,false,false,500,50,Approver
+Devices - Configure Draft Security,https://nrpdev2.sharepoint.com/teams/ConfigTest-Site5,Devices,Devices,true,true,false,false,500,50,Approver
+Tickets - Configure Draft Security,https://nrpdev2.sharepoint.com/teams/ConfigTest-Site5,Tickets,Tickets,false,true,false,false,500,50,Approver
+Employee onboarding - Configure Content Approval,https://nrpdev2.sharepoint.com/sites/ConfigTest-Site6,Employee onboarding,Employee onboarding,true,true,false,false,500,50,Author
+Error Testing - Site Not Found,https://nrpdev2.sharepoint.com/teams/ConfigTest-None,Documents,Shared Documents,false,false,false,false,0,0,None
+Error Testing - List Not Found,https://nrpdev2.sharepoint.com/teams/ConfigTest-Site1,None,None,false,false,false,false,0,0,None

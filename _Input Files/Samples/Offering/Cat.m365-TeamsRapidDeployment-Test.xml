@@ -1,0 +1,132 @@
+<CrisisTeamDeployment>
+    <TenantSettings>
+        <TenantID>e19bb33a-929a-4d93-985a-1a08f7fa8e3d</TenantID>
+        <SPOAdminURL>https://nrpdev-admin.sharepoint.com</SPOAdminURL>
+        <SPOExternalSharing>Disabled</SPOExternalSharing> <!-- Options: ExternalUserAndGuestSharing (default); Disabled; ExternalUserSharingOnly; Recommendations: For Crisis Teams deployments this should be disabled.-->
+        <TeamsAllowGuestUsers>False</TeamsAllowGuestUsers> <!-- Options: True or False; Recommendation: False -->
+        <TeamsAllowEgnyteFiles>False</TeamsAllowEgnyteFiles> <!-- Options: True or False; Recommendation: False -->
+        <TeamsAllowDropBoxFiles>False</TeamsAllowDropBoxFiles> <!-- Options: True or False; Recommendation: False -->
+        <TeamsAllowBoxFiles>False</TeamsAllowBoxFiles> <!-- Options: True or False; Recommendation: False -->
+        <TeamsAllowGoogleFiles>False</TeamsAllowGoogleFiles> <!-- Options: True or False; Recommendation: False -->
+        <TeamsExternalAccessPolicy>Global</TeamsExternalAccessPolicy> <!-- This should be Global for all of our Crisis Teams clients based on assumptions -->
+        <TeamsAllowSkypeForBusiness>True</TeamsAllowSkypeForBusiness> <!-- Options: True or False; Recommendation: True -->
+        <!-- **** This capability isn't displaying properly in the UI yet.  Documenation says it is preview <TeamsAllowSkypeForConsumers>False</TeamsAllowSkypeForConsumers> <! Options: True or False; Recommendation: False -->
+        <TeamsAutoAdmitUsers>EveryoneInCompany</TeamsAutoAdmitUsers> <!-- Options: Everyone (default); EveryoneInCompany; EveryoneInSameAndFederatedCompany; Recommendations: For Crisis Teams deployments this should be EveryoneInCompany.-->
+        <TeamsAllowBroadcastScheduling>False</TeamsAllowBroadcastScheduling> <!-- Options: True or False; Recommendation: False -->
+        <AzureADExternalAllowBlockList>Allow</AzureADExternalAllowBlockList> <!-- Options: Allow or Block; Recommendation: Allow -->
+        <AzureADExternalDomains> <!-- Requires a minimum of one domain to work.  If they don't have a domain they want you allow you can use Catapult's -->
+            <Domain>catapultsystems.com</Domain> <!-- IE. catapultsystems.com -->
+        </AzureADExternalDomains>
+        <AzureADExternalPolicyName>InvitationsAllowedDomainsPolicy</AzureADExternalPolicyName>
+        <O365GroupCreators>
+            <AllowGroupCreation>False</AllowGroupCreation>
+            <DisplayName>Test O365 Group Creators 10</DisplayName> <!-- If this group exists it will be used.  If it doesn't exist, it will be created. -->
+            <Alias>TestO365GroupCreators10</Alias>
+            <Owners><!-- Create a row for each owner to add to the group. -->
+                <Owner>nickp@nrpdev.com</Owner> <!-- User UPN; Can add multiple rows-->
+                <Owner>nicksman@nrpdev.com</Owner>
+            </Owners>
+            <Members> <!-- Create a row for each member to add to the group. If this is a Org-Wide group, delete all "Member" rows but keep the "Members" start & end tags -->
+                <Member>test01@nrpdev.com</Member> <!-- User UPN; Can add multiple rows-->
+                <Member>test02@nrpdev.com</Member>
+            </Members>
+        </O365GroupCreators>
+    </TenantSettings>
+    <TeamSettings> <!-- To simplify crisis deployment all created team workspaces will leverage the same settings identified in <TeamSettings> section -->
+        <AllowGiphy>True</AllowGiphy> <!-- Options: True or False; Recommendation: True -->
+        <GiphyContentRating>Strict</GiphyContentRating> <!-- Options: Strict or Moderate; Recommendation: Strict -->
+        <AllowStickersAndMemes>True</AllowStickersAndMemes> <!-- Options: True or False; Recommendation: True -->
+        <AllowCustomMemes>False</AllowCustomMemes> <!-- Options: True or False; Recommendation: False -->
+        <AllowGuestCreateUpdateChannels>False</AllowGuestCreateUpdateChannels> <!-- Options: True or False; Recommendation: False -->
+        <AllowGuestDeleteChannels>False</AllowGuestDeleteChannels> <!-- Options: True or False; Recommendation: False -->
+        <AllowCreateUpdateChannels>True</AllowCreateUpdateChannels> <!-- Options: True or False; Recommendation: True -->
+        <AllowDeleteChannels>False</AllowDeleteChannels> <!-- Options: True or False; Recommendation: False -->
+        <AllowAddRemoveApps>True</AllowAddRemoveApps> <!-- Options: True or False; Recommendation: True -->
+        <AllowCreateUpdateRemoveTabs>True</AllowCreateUpdateRemoveTabs> <!-- Options: True or False; Recommendation: True -->
+        <AllowCreateUpdateRemoveConnectors>True</AllowCreateUpdateRemoveConnectors> <!-- Options: True or False; Recommendation: True -->
+        <AllowUserEditMessages>True</AllowUserEditMessages> <!-- Options: True or False; Recommendation: True -->
+        <AllowUserDeleteMessages>True</AllowUserDeleteMessages> <!-- Options: True or False; Recommendation: True -->
+        <!-- *** There appears to be a bug in this setting via PowerShell *** <AllowOwnerDeleteMessages>True</AllowOwnerDeleteMessages> Options: True or False; Recommendation: True -->
+        <AllowTeamMentions>True</AllowTeamMentions> <!-- Options: True or False; Recommendation: True -->
+        <AllowChannelMentions>True</AllowChannelMentions> <!-- Options: True or False; Recommendation: True -->
+        <!-- *** There appears to be a bug in this setting via PowerShell *** <ShowInTeamsSearchAndSuggestions>True</ShowInTeamsSearchAndSuggestions> Options: True or False; Recommendation: True -->
+        <RetainCreatedGroup>True</RetainCreatedGroup><!-- Options: True or False; Recommendation: False -->
+    </TeamSettings>
+    <CreateTeams> <!-- For additional workspaces duplicate the <Team> section -->
+        <Team>
+            <DisplayName>Test Crisis Comm 43</DisplayName> <!-- This Team is for the communications teams to manage content that will be shared through the communciations app. -->
+            <Description>This team workspace is created to help facilitate corporate communications and maintain content in the crisis communication application.</Description>]
+            <MailNickName>TestCrisisComm43</MailNickName>
+            <Visibility>Public</Visibility> <!-- Options: Public or Private; Recommendation: This site should be Private because it controles the communication app -->
+            <Owners><!-- Create a row for each owner to add to the group. -->
+                <Owner>nickp@nrpdev.com</Owner> <!-- User UPN; Can add multiple rows-->
+            </Owners>
+            <Members> <!-- Create a row for each member to add to the group. If this is a Org-Wide group, delete all "Member" rows but keep the "Members" start & end tags -->
+                <Member>test01@nrpdev.com</Member> <!-- User UPN -->
+            </Members>
+            <Channels> <!-- List the channels that need to be created on this team in addition to the General Channel.  The general Channel will be created automatically -->
+                <Channel>
+                    <DisplayName>Communications Content</DisplayName>
+                    <Description>This channel houses the administration side of the crisis communication app.</Description>
+                </Channel>
+                <Channel>
+                    <DisplayName>Help Requests</DisplayName>
+                    <Description>This channel is for help requests from the crisis communication app.</Description>
+                </Channel>
+            </Channels>
+        </Team>
+        <Team>
+            <DisplayName>Test Crisis Collab 43</DisplayName> <!-- This team is the Org-Wide team created to server as a departmental Share / Communcition mechanism. -->
+            <Description>This team workspace is created to help facilitate collaboration across your departments in a remote scenario.</Description>]
+            <MailNickName>TestCrisisCollab43</MailNickName>
+            <Visibility>Public</Visibility> <!-- Options: Public or Private; Recommendation: Powershell Currently doesn't support Org-Wide teams creation.  You have to manually configure this after creation. -->
+            <Owners>
+                <Owner>nickp@nrpdev.com</Owner> <!-- User UPN; Can add multiple rows-->
+            </Owners>
+            <Members> <!-- Create a row for each member to add to the group. If this is a Org-Wide group, delete all "Member" rows but keep the "Members" start & end tags -->
+            </Members>
+            <Channels> <!-- List the channels that need to be created on this team in addition to the General Channel.  The general Channel will be created automatically -->
+                <Channel>
+                    <DisplayName>Corporate Communications</DisplayName>
+                    <Description>This channel is intended for remote collaboration within the Corporate Communications department.</Description>
+                </Channel>
+                <Channel>
+                    <DisplayName>Customer Service</DisplayName>
+                    <Description>This channel is intended for remote collaboration within the Customer Service department.</Description>
+                </Channel>
+                <Channel>
+                    <DisplayName>Executive Leadership</DisplayName>
+                    <Description>This channel is intended for remote collaboration within the Executive Leadership team.</Description>
+                </Channel>
+                <Channel>
+                    <DisplayName>Finance</DisplayName>
+                    <Description>This channel is intended for remote collaboration within the Finance department.</Description>
+                </Channel>
+                <Channel>
+                    <DisplayName>Human Resources</DisplayName>
+                    <Description>This channel is intended for remote collaboration within the Human Resources department.</Description>
+                </Channel>
+                <Channel>
+                    <DisplayName>Information Technology</DisplayName>
+                    <Description>This channel is intended for remote collaboration within the Information Technology department.</Description>
+                </Channel>
+                <Channel>
+                    <DisplayName>Legal</DisplayName>
+                    <Description>This channel is intended for remote collaboration within the Legal department.</Description>
+                </Channel>
+                <Channel>
+                    <DisplayName>Marketing</DisplayName>
+                    <Description>This channel is intended for remote collaboration within the Marketing department.</Description>
+                </Channel>
+                <Channel>
+                    <DisplayName>Operations</DisplayName>
+                    <Description>This channel is intended for remote collaboration within the Operations department.</Description>
+                </Channel>
+                <Channel>
+                    <DisplayName>Sales</DisplayName>
+                    <Description>This channel is intended for remote collaboration within the Sales department.</Description>
+                </Channel>
+            </Channels>
+        </Team>
+    </CreateTeams>
+</CrisisTeamDeployment>

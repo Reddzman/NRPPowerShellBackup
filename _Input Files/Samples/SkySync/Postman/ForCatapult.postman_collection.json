@@ -1,0 +1,221 @@
+{
+	"info": {
+		"_postman_id": "b47459fd-73c0-457f-a69c-86ce45a6a284",
+		"name": "ForCatapult",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Access Token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "45750dba-4b80-4acb-a198-3973239760b1",
+						"exec": [
+							"tests[\"response code is OK\"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"tests[\"has access_token\"] = jsonData.access_token !== null && jsonData.access_token.length > 0;",
+							"tests[\"has refresh_token\"] = jsonData.refresh_token !== null && jsonData.refresh_token.length > 0;",
+							"",
+							"postman.setEnvironmentVariable(\"access_token\", jsonData.access_token);",
+							"postman.setEnvironmentVariable(\"refresh_token\", jsonData.refresh_token);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "offline_access profile roles",
+							"type": "text"
+						},
+						{
+							"key": "resource",
+							"value": "{{url}}",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "{{username}}",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "{{password}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}connect/token",
+					"host": [
+						"{{url}}connect"
+					],
+					"path": [
+						"token"
+					]
+				},
+				"description": "Creates a temporary token to access the SkySync application"
+			},
+			"response": []
+		},
+		{
+			"name": "Get Job Details",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}v1/jobs/{{job}}?fields=all",
+					"host": [
+						"{{url}}v1"
+					],
+					"path": [
+						"jobs",
+						"{{job}}"
+					],
+					"query": [
+						{
+							"key": "fields",
+							"value": "all"
+						}
+					]
+				},
+				"description": "Pull back the JSON block of a job created in SkySync"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Basic Job",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "f3d04da2-ee8c-4fcd-893a-34008f52f69b",
+						"exec": [
+							"tests[\"response code is OK\"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"job\", jsonData.job.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"name\":\"Pilot: Copy Box to OD4B (testuser@client.com)\",\r\n  \"kind\": \"transfer\",\r\n  \"transfer\": {\r\n      \"audit_level\": \"error\",\r\n      \"transfer_type\": \"copy\",\r\n      \"permissions\": {\r\n            \"policy\": \"add\",\r\n            \"failures\": \"none\"\r\n        },\r\n      \"preserve_owners\": true,\r\n      \"delete_propagation\": \"mirror\",\r\n        \"source\": {\r\n          \"connection\": { \"id\": \"ENTER SOURCE CONNECTION GUID HERE\" },\r\n          \"target\": { \"path\": \"/\" },\r\n          \"impersonate_as\": { \"email\": \"testuser@client.com\" }\r\n        },\r\n        \"destination\": {\r\n          \"connection\": { \"id\": \"ENTER DESTINATION CONNECTION GUID HERE\" },\r\n          \"target\": { \"path\": \"/Documents/fromBox/\" },\r\n          \"impersonate_as\": { \"email\": \"testuser@client.com\" }\r\n        },\r\n       \"schedule\": { \"mode\": \"manual\" },\r\n       \"filter\":{\r\n         \"source\":[\r\n            {\r\n               \"action\":\"exclude\",\r\n               \"rules\":[\r\n                  {\r\n                     \"type\":\"filter_shared\"\r\n                  }\r\n               ],\r\n               \"type\":\"filter_rule\"\r\n            }\r\n         ],\r\n         \"destination\":[\r\n            {\r\n               \"action\":\"exclude\",\r\n               \"rules\":[\r\n                  {\r\n                     \"type\":\"filter_shared\"\r\n                  }\r\n               ],\r\n               \"type\":\"filter_rule\"\r\n            }\r\n         ]\r\n      }\r\n  },\r\n  \"schedule\": { \"mode\": \"manual\" }\r\n}\r\n"
+				},
+				"url": {
+					"raw": "{{url}}v1/jobs",
+					"host": [
+						"{{url}}v1"
+					],
+					"path": [
+						"jobs"
+					]
+				},
+				"description": "This JSON has a minimum number of settings and should just be used as a sample.  Refer to SkySync documentation for additional parameters and their settings."
+			},
+			"response": []
+		},
+		{
+			"name": "Reset Job Example - Permissions",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "e79e20cc-b8b7-459c-a63c-4ae2cecdc7a9",
+						"exec": [
+							"tests[\"response code is OK\"] = responseCode.code === 200;",
+							"",
+							"var jsonData = JSON.parse(responseBody);",
+							"postman.setEnvironmentVariable(\"job\", jsonData.job.id);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer {{access_token}}"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{url}}v1/jobs/{{job}}?reset=permissions ",
+					"host": [
+						"{{url}}v1"
+					],
+					"path": [
+						"jobs",
+						"{{job}}"
+					],
+					"query": [
+						{
+							"key": "reset",
+							"value": "permissions "
+						}
+					]
+				},
+				"description": "One example of the process to reset permissions on a job.  Refer to SkySync documentation for additional reset options."
+			},
+			"response": []
+		}
+	]
+}

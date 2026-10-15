@@ -1,0 +1,11 @@
+﻿site,spURL,siteType,spLockState,teamsArchived
+adelev@nrpdev.com,adelev@nrpdev.com,OneDrive,Unlock,false
+Migration Test Private Team,https://nrpdev2.sharepoint.com/sites/MigrationTestPrivate,Teams,Unlock,false
+Migration Test Public Team,https://nrpdev2.sharepoint.com/sites/MigrationTestPublic,Teams,Unlock,false
+Migration Test Org Wide Team,https://nrpdev2.sharepoint.com/sites/MigrationTestOrgWide,Teams,Unlock,false
+Migration Test Classic Site Structure,https://nrpdev2.sharepoint.com/sites/migrationtestclassicsite,SharePoint,Unlock,false
+Migration Test Modern Communication ShowCase ,https://nrpdev2.sharepoint.com/sites/MigrationTestModernCommShowcase,SharePoint,Unlock,false
+Migration Test Modern Communication Topic ,https://nrpdev2.sharepoint.com/sites/MigrationTestModernCommTopic,SharePoint,Unlock,false
+Migration Test Modern Team,https://nrpdev2.sharepoint.com/sites/MigrationTestModernTeam,SharePoint,Unlock,false
+Migration Test Modern Team,https://nrpdev2.sharepoint.com/sites/MigrationTestModernTeam,WrongType,ReadOnly,false
+Migration Test Modern Team,https://nrpdev2.sharepoint.com/sites/MigrationTestModernTeam,SharePoint,WrongState,false
